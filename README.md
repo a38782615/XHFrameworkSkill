@@ -1,3 +1,7 @@
+## 🎯 <span style="color: red; font-size: 20px; font-weight: bold;">大家感兴趣的话可以进入QQ群一起交流学习！</span>
+
+## 🎯 <span style="color: red; font-size: 22px; font-weight: bold;">QQ交流群：621790749</span>
+
 # XHFrameworkSkill - Unity技能框架与编辑器
 
 ## 📖 目录
@@ -13,10 +17,6 @@
 - **资源服务器**：资源管理和分发
 - **工具集**：开发辅助工具
 - **常用Package包**：Unity常用插件和库
-
-大家感兴趣的话可以进入QQ群一起交流学习！
-
-**QQ交流群：621790749**
 
 ---
 
