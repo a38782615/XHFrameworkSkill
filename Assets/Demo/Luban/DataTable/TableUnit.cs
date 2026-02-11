@@ -12,9 +12,9 @@ using Luban;
 
 namespace cfg
 {
-public sealed partial class TableHero : Luban.BeanBase
+public sealed partial class TableUnit : Luban.BeanBase
 {
-    public TableHero(ByteBuf _buf) 
+    public TableUnit(ByteBuf _buf) 
     {
         Id = _buf.ReadInt();
         Name = _buf.ReadString();
@@ -23,9 +23,9 @@ public sealed partial class TableHero : Luban.BeanBase
         {int __n0 = _buf.ReadSize(); InitialAttribute = new (int,int)[__n0];for(var __index0 = 0 ; __index0 < __n0 ; __index0++) { (int,int) __e0;__e0 = Luban.ExternalTypeUtil.NewInt2(global::cfg.Int2.DeserializeInt2(_buf)); InitialAttribute[__index0] = __e0;}}
     }
 
-    public static TableHero DeserializeTableHero(ByteBuf _buf)
+    public static TableUnit DeserializeTableUnit(ByteBuf _buf)
     {
-        return new TableHero(_buf);
+        return new TableUnit(_buf);
     }
 
     public readonly int Id;
@@ -43,7 +43,7 @@ public sealed partial class TableHero : Luban.BeanBase
     /// </summary>
     public readonly (int,int)[] InitialAttribute;
    
-    public const int __ID__ = 15075528;
+    public const int __ID__ = 15471186;
     public override int GetTypeId() => __ID__;
 
     public  void ResolveRef(Tables tables)

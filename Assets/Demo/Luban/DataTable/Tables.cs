@@ -13,23 +13,20 @@ namespace cfg
 {
 public partial class Tables
 {
-    public TbHero TbHero {get; }
-    public TbMonster TbMonster {get; }
     public TbSkill TbSkill {get; }
+    public TbUnit TbUnit {get; }
 
     public Tables(System.Func<string, ByteBuf> loader)
     {
-        TbHero = new TbHero(loader("tbhero"));
-        TbMonster = new TbMonster(loader("tbmonster"));
         TbSkill = new TbSkill(loader("tbskill"));
+        TbUnit = new TbUnit(loader("tbunit"));
         ResolveRef();
     }
     
     private void ResolveRef()
     {
-        TbHero.ResolveRef(this);
-        TbMonster.ResolveRef(this);
         TbSkill.ResolveRef(this);
+        TbUnit.ResolveRef(this);
     }
 }
 

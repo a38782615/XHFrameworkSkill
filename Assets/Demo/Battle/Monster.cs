@@ -8,16 +8,14 @@ public class Monster : Unit
     public AnimationComponent AnimationComponent;
     private GameplayAbilitySpec _normalAttackSpec;
 
-    public override UnitType Type => UnitType.Monster;
-
     void Start()
     {
         ownerASC.OwnedTags.AddTag(new GameplayTag("unitType.monster"));
 
-        var monsterData = LubanManager.Instance.Tables.TbMonster.GetOrDefault(id);
-        if (monsterData != null && monsterData.ActiveSkill.Length > 0)
+        var unitData = LubanManager.Instance.Tables.TbUnit.GetOrDefault(id);
+        if (unitData != null && unitData.ActiveSkill.Length > 0)
         {
-            _normalAttackSpec = ownerASC.Abilities.FindAbilityById(monsterData.ActiveSkill[0]);
+            _normalAttackSpec = ownerASC.Abilities.FindAbilityById(unitData.ActiveSkill[0]);
         }
     }
 

@@ -3,20 +3,12 @@ using SkillEditor.Data;
 using SkillEditor.Runtime;
 using UnityEngine;
 
-public enum UnitType
-{
-    Hero,
-    Monster,
-}
-
 public class Unit : MonoBehaviour
 {
     public AbilitySystemComponent ownerASC;
 
     [Header("单位配置")]
     public int id;
-
-    public virtual UnitType Type => UnitType.Hero;
 
     protected virtual void Awake()
     {
@@ -34,39 +26,16 @@ public class Unit : MonoBehaviour
 
     private void InitFromTable()
     {
-        var tables = LubanManager.Instance.Tables;
-        (int, int)[] attributes = null;
-        int[] activeSkills = null;
-        int[] passiveSkills = null;
-
-        if (Type == UnitType.Hero)
+        var data = LubanManager.Instance.Tables.TbUnit.GetOrDefault(id);
+        if (data == null)
         {
-            var data = tables.TbHero.GetOrDefault(id);
-            if (data == null)
-            {
-                Debug.LogWarning($"[Unit] TbHero中找不到ID: {id}");
-                return;
-            }
-            attributes = data.InitialAttribute;
-            activeSkills = data.ActiveSkill;
-            passiveSkills = data.PassiveSkill;
-        }
-        else
-        {
-            var data = tables.TbMonster.GetOrDefault(id);
-            if (data == null)
-            {
-                Debug.LogWarning($"[Unit] TbMonster中找不到ID: {id}");
-                return;
-            }
-            attributes = data.InitialAttribute;
-            activeSkills = data.ActiveSkill;
-            passiveSkills = data.PassiveSkill;
+            Debug.LogWarning($"[Unit] TbUnit中找不到ID: {id}");
+            return;
         }
 
-        InitAttributes(attributes);
-        GrantSkills(activeSkills);
-        GrantSkills(passiveSkills);
+        InitAttributes(data.InitialAttribute);
+        GrantSkills(data.ActiveSkill);
+        GrantSkills(data.PassiveSkill);
     }
 
     private void InitAttributes((int, int)[] attributes)

@@ -31,17 +31,17 @@ public class SkillBarUI : MonoBehaviour
         if (skillSlotPrefab == null || slotContainer == null || player == null) return;
 
         var tables = LubanManager.Instance.Tables;
-        var heroData = tables.TbHero.GetOrDefault(player.id);
-        if (heroData == null) return;
+        var unitData = tables.TbUnit.GetOrDefault(player.id);
+        if (unitData == null) return;
 
         var tbSkill = tables.TbSkill;
 
-        foreach (var skillId in heroData.ActiveSkill)
+        foreach (var skillId in unitData.ActiveSkill)
         {
             CreateSlot(skillId, tbSkill);
         }
 
-        foreach (var skillId in heroData.PassiveSkill)
+        foreach (var skillId in unitData.PassiveSkill)
         {
             CreateSlot(skillId, tbSkill);
         }
