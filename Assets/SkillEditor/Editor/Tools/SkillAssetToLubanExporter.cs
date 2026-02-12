@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Text;
+using System.Xml;
 using MiniExcelLibs;
 using SkillEditor.Data;
 using UnityEditor;
@@ -11,13 +14,13 @@ namespace SkillEditor.Editor.Tools
 {
     /// <summary>
     /// SkillAsset 导出到 Luban Excel 工具
-    /// 读取现有表头，清除数据区，写入新数据
+    /// 只修改数据区域（从第5行开始），保持表头格式不变
     /// </summary>
     public class SkillAssetToLubanExporter : EditorWindow
     {
         private const string SKILL_ASSET_PATH = "Assets/Unity/Resources/ScriptObject/SkillAsset";
         private const string EXCEL_PATH = "Luban/MiniTemplate/Datas/#SkillGraph.xlsx";
-        private const int HEADER_ROWS = 4; // 表头占4行
+        private const int DATA_START_ROW = 5; // 数据从第5行开始
         
         private Vector2 _scrollPosition;
         private List<SkillGraphData> _skillAssets = new List<SkillGraphData>();
@@ -151,8 +154,7 @@ namespace SkillEditor.Editor.Tools
         }
 
         /// <summary>
-        /// 导出技能到 Excel
-        /// 策略：读取现有表头 + 生成新数据行 → 整体写入
+        /// 导出技能到 Excel - 直接修改 xlsx 文件的 sheet1.xml
         /// </summary>
         private static void ExportToExcel(List<SkillGraphData> skills)
         {
@@ -160,30 +162,8 @@ namespace SkillEditor.Editor.Tools
             {
                 var excelPath = Path.Combine(Application.dataPath, "..", EXCEL_PATH);
                 
-                // 1. 读取现有表头（前4行）
-                var headerRows = new List<object[]>();
-                using (var stream = File.OpenRead(excelPath))
-                {
-                    var allRows = MiniExcel.Query(stream, useHeaderRow: false).ToList();
-                    for (int i = 0; i < HEADER_ROWS && i < allRows.Count; i++)
-                    {
-                        var row = allRows[i] as IDictionary<string, object>;
-                        if (row != null)
-                        {
-                            // 转换为 object[] (A-H 共8列)
-                            var rowData = new object[8];
-                            for (int col = 0; col < 8; col++)
-                            {
-                                var key = GetColumnName(col);
-                                rowData[col] = row.ContainsKey(key) ? row[key] : null;
-                            }
-                            headerRows.Add(rowData);
-                        }
-                    }
-                }
-                
-                // 2. 生成数据行
-                var dataRows = new List<object[]>();
+                // 生成数据行
+                var dataRows = new List<string[]>();
                 int skillId = 1;
                 
                 foreach (var skill in skills)
@@ -194,32 +174,48 @@ namespace SkillEditor.Editor.Tools
                     
                     for (int i = 0; i < maxRows; i++)
                     {
-                        var row = new object[8];
+                        var row = new string[8];
                         
                         // A列: 空
-                        row[0] = null;
+                        row[0] = "";
                         
                         // 第一行写基础信息
                         if (i == 0)
                         {
-                            row[1] = skillId;                    // B: Id
+                            row[1] = skillId.ToString();         // B: Id
                             row[2] = skill.SkillId ?? "";        // C: SkillId
                             row[3] = skill.name ?? "";           // D: Name
                             row[4] = "";                         // E: Description
+                        }
+                        else
+                        {
+                            row[1] = "";
+                            row[2] = "";
+                            row[3] = "";
+                            row[4] = "";
                         }
                         
                         // F: nodeType, G: content
                         if (i < nodeCount && skill.nodes[i] != null)
                         {
                             var node = skill.nodes[i];
-                            row[5] = (int)node.nodeType;
+                            row[5] = ((int)node.nodeType).ToString();
                             row[6] = JsonUtility.ToJson(node);
+                        }
+                        else
+                        {
+                            row[5] = "";
+                            row[6] = "";
                         }
                         
                         // H: ConnectionsJson
                         if (i < connCount && skill.connections[i] != null)
                         {
                             row[7] = JsonUtility.ToJson(skill.connections[i]);
+                        }
+                        else
+                        {
+                            row[7] = "";
                         }
                         
                         dataRows.Add(row);
@@ -228,26 +224,8 @@ namespace SkillEditor.Editor.Tools
                     skillId++;
                 }
                 
-                // 3. 合并表头和数据，使用 DataTable 写入
-                var allData = new List<object[]>();
-                allData.AddRange(headerRows);
-                allData.AddRange(dataRows);
-                
-                // 4. 转换为 IEnumerable<Dictionary> 格式写入
-                var dictRows = allData.Select(row => new Dictionary<string, object>
-                {
-                    { "A", row[0] },
-                    { "B", row[1] },
-                    { "C", row[2] },
-                    { "D", row[3] },
-                    { "E", row[4] },
-                    { "F", row[5] },
-                    { "G", row[6] },
-                    { "H", row[7] }
-                }).ToList();
-                
-                // 5. 写入 Excel（覆盖整个文件）
-                MiniExcel.SaveAs(excelPath, dictRows, printHeader: false, sheetName: "Sheet1", overwriteFile: true);
+                // 直接修改 xlsx 文件
+                UpdateExcelData(excelPath, dataRows, DATA_START_ROW);
                 
                 Debug.Log($"[SkillExporter] 导出成功！共 {skills.Count} 个技能，{dataRows.Count} 行数据");
             }
@@ -257,10 +235,138 @@ namespace SkillEditor.Editor.Tools
                 throw;
             }
         }
-        
-        private static string GetColumnName(int index)
+
+        /// <summary>
+        /// 直接修改 xlsx 文件的 sheet1.xml，只更新数据区域
+        /// </summary>
+        private static void UpdateExcelData(string excelPath, List<string[]> dataRows, int startRow)
         {
-            return ((char)('A' + index)).ToString();
+            // xlsx 是 zip 格式，直接操作 xml
+            var tempPath = excelPath + ".tmp";
+            
+            using (var originalZip = ZipFile.Open(excelPath, ZipArchiveMode.Read))
+            using (var newZip = ZipFile.Open(tempPath, ZipArchiveMode.Create))
+            {
+                foreach (var entry in originalZip.Entries)
+                {
+                    if (entry.FullName == "xl/worksheets/sheet1.xml")
+                    {
+                        // 修改 sheet1.xml
+                        var newEntry = newZip.CreateEntry(entry.FullName);
+                        using (var reader = new StreamReader(entry.Open()))
+                        using (var writer = new StreamWriter(newEntry.Open()))
+                        {
+                            var xml = reader.ReadToEnd();
+                            xml = UpdateSheetXml(xml, dataRows, startRow);
+                            writer.Write(xml);
+                        }
+                    }
+                    else if (entry.FullName == "xl/sharedStrings.xml")
+                    {
+                        // 更新 sharedStrings.xml
+                        var newEntry = newZip.CreateEntry(entry.FullName);
+                        using (var reader = new StreamReader(entry.Open()))
+                        using (var writer = new StreamWriter(newEntry.Open()))
+                        {
+                            var xml = reader.ReadToEnd();
+                            xml = UpdateSharedStrings(xml, dataRows);
+                            writer.Write(xml);
+                        }
+                    }
+                    else
+                    {
+                        // 复制其他文件
+                        var newEntry = newZip.CreateEntry(entry.FullName);
+                        using (var source = entry.Open())
+                        using (var dest = newEntry.Open())
+                        {
+                            source.CopyTo(dest);
+                        }
+                    }
+                }
+            }
+            
+            // 替换原文件
+            File.Delete(excelPath);
+            File.Move(tempPath, excelPath);
+        }
+
+        private static string UpdateSheetXml(string xml, List<string[]> dataRows, int startRow)
+        {
+            var doc = new XmlDocument();
+            doc.LoadXml(xml);
+            
+            var nsManager = new XmlNamespaceManager(doc.NameTable);
+            nsManager.AddNamespace("x", "http://schemas.openxmlformats.org/spreadsheetml/2006/main");
+            
+            var sheetData = doc.SelectSingleNode("//x:sheetData", nsManager);
+            if (sheetData == null) return xml;
+            
+            // 删除从 startRow 开始的所有行
+            var rowsToRemove = new List<XmlNode>();
+            foreach (XmlNode row in sheetData.SelectNodes($"x:row[@r >= {startRow}]", nsManager))
+            {
+                rowsToRemove.Add(row);
+            }
+            foreach (var row in rowsToRemove)
+            {
+                sheetData.RemoveChild(row);
+            }
+            
+            // 添加新数据行
+            for (int i = 0; i < dataRows.Count; i++)
+            {
+                var rowNum = startRow + i;
+                var rowElement = doc.CreateElement("row", "http://schemas.openxmlformats.org/spreadsheetml/2006/main");
+                rowElement.SetAttribute("r", rowNum.ToString());
+                
+                var rowData = dataRows[i];
+                for (int col = 0; col < rowData.Length; col++)
+                {
+                    var cellRef = GetCellReference(col, rowNum);
+                    var cellElement = doc.CreateElement("c", "http://schemas.openxmlformats.org/spreadsheetml/2006/main");
+                    cellElement.SetAttribute("r", cellRef);
+                    
+                    var value = rowData[col];
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        // 检查是否为数字
+                        if (int.TryParse(value, out _))
+                        {
+                            var vElement = doc.CreateElement("v", "http://schemas.openxmlformats.org/spreadsheetml/2006/main");
+                            vElement.InnerText = value;
+                            cellElement.AppendChild(vElement);
+                        }
+                        else
+                        {
+                            // 字符串类型，使用内联字符串
+                            cellElement.SetAttribute("t", "inlineStr");
+                            var isElement = doc.CreateElement("is", "http://schemas.openxmlformats.org/spreadsheetml/2006/main");
+                            var tElement = doc.CreateElement("t", "http://schemas.openxmlformats.org/spreadsheetml/2006/main");
+                            tElement.InnerText = value;
+                            isElement.AppendChild(tElement);
+                            cellElement.AppendChild(isElement);
+                        }
+                    }
+                    
+                    rowElement.AppendChild(cellElement);
+                }
+                
+                sheetData.AppendChild(rowElement);
+            }
+            
+            return doc.OuterXml;
+        }
+
+        private static string UpdateSharedStrings(string xml, List<string[]> dataRows)
+        {
+            // 保持原有的 sharedStrings 不变，因为我们使用 inlineStr
+            return xml;
+        }
+
+        private static string GetCellReference(int colIndex, int rowNum)
+        {
+            return $"{(char)('A' + colIndex)}{rowNum}";
         }
     }
 }
