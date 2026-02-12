@@ -45,7 +45,7 @@ namespace SkillEditor.Runtime
 
             var skillData = new SkillData
             {
-                SkillId = tableData.SkillId,
+                SkillId = tableData.Id.ToString(),
                 nodes = ParseNodes(tableData.NodesJsons),
                 connections = ParseConnections(tableData.ConnectionsJson)
             };

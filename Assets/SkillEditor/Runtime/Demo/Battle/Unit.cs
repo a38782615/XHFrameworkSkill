@@ -63,7 +63,7 @@ public class Unit : MonoBehaviour
                 Debug.LogWarning($"[Unit] 技能表中找不到ID: {skillId}");
                 continue;
             }
-            var graphData = SkillDataCenter.Instance.GetSkillGraph(skillData.Name);
+            var graphData = SkillDataCenter.Instance.GetSkillGraph(skillData.Id.ToString());
             ownerASC.GrantAbility(graphData, skillId);
         }
     }

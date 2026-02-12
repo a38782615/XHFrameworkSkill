@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2abec0374da61478151f6b840fbb7a, type: 3}
   m_Name: RecBlood
   m_EditorClassIdentifier: 
-  SkillId: Skill_RecBlood
+  SkillId: 1007
   nodes:
-  - rid: 4684207772497084419
-  - rid: 4684207789798588423
-  - rid: 4684207772497084429
-  - rid: 4684207772497084420
-  - rid: 4684207772497084416
-  - rid: 4684207772497084418
-  - rid: 4684207789798588424
+  - rid: 661027767992713489
+  - rid: 661027767992713490
+  - rid: 661027767992713491
+  - rid: 661027767992713492
+  - rid: 661027767992713493
+  - rid: 661027767992713494
+  - rid: 661027767992713495
   connections:
   - outputNodeGuid: 356907e0-1488-4128-bfcc-7ff73cfc3330
     outputPortName: "\u51B7\u5374"
@@ -49,56 +49,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 4684207772497084416
-      type: {class: AbilityNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
-      data:
-        guid: 356907e0-1488-4128-bfcc-7ff73cfc3330
-        nodeType: 0
-        position: {x: -902.4, y: -1844}
-        targetType: 1
-        skillId: 1008
-        assetTags:
-          _tags: []
-        cancelAbilitiesWithTags:
-          _tags: []
-        blockAbilitiesWithTags:
-          _tags: []
-        activationOwnedTags:
-          _tags: []
-        activationRequiredTags:
-          _tags: []
-        activationBlockedTags:
-          _tags:
-          - _name: CD.RecBlood
-            _hashCode: 1163914435
-            _shortName: "\u56DE\u8840"
-            _ancestorHashCodes: aba22dbc
-            _ancestorNames:
-            - CD
-        ongoingBlockedTags:
-          _tags: []
-        eventOutputPorts: []
-    - rid: 4684207772497084418
-      type: {class: ParticleCueNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
-      data:
-        guid: cde57fb8-b693-4da8-a4a8-fd61e56c5dcd
-        nodeType: 12
-        position: {x: -304, y: -2072}
-        targetType: 1
-        requiredTags:
-          _tags: []
-        immunityTags:
-          _tags: []
-        destroyWithNode: 0
-        positionSource: 0
-        particlePrefab: {fileID: 3966591633886693288, guid: 876bc2ad5530efd4881e54e3550d1f48,
-          type: 3}
-        particleBindingName: down
-        particleOffset: {x: 0, y: 0, z: 0}
-        particleScale: {x: 1, y: 1, z: 1}
-        attachToTarget: 0
-        particleLoop: 0
-    - rid: 4684207772497084419
+    - rid: 661027767992713489
       type: {class: CostEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: 9d6f459d-b588-4b64-843b-1b71e8f299ae
@@ -141,56 +92,7 @@ MonoBehaviour:
         ongoingRequiredTags:
           _tags: []
         cancelOnAbilityEnd: 1
-    - rid: 4684207772497084420
-      type: {class: CooldownEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
-      data:
-        guid: c28fb88d-51b1-47b2-be59-859e0ac638e3
-        nodeType: 10
-        position: {x: -1223.2, y: -1826.4}
-        targetType: 1
-        assetTags:
-          _tags: []
-        grantedTags:
-          _tags:
-          - _name: CD.RecBlood
-            _hashCode: 1163914435
-            _shortName: "\u56DE\u8840"
-            _ancestorHashCodes: aba22dbc
-            _ancestorNames:
-            - CD
-        applicationRequiredTags:
-          _tags: []
-        applicationImmunityTags:
-          _tags: []
-        removeGameEffectsWithTags:
-          _tags: []
-        durationType: 1
-        duration: 3
-        isPeriodic: 0
-        period: 1
-        executeOnApplication: 0
-        attributeModifiers: []
-        stackType: 0
-        stackLimit: 0
-        stackDurationRefreshPolicy: 0
-        stackPeriodResetPolicy: 0
-        stackExpirationPolicy: 0
-        stackOverflowPolicy: 0
-        ongoingRequiredTags:
-          _tags: []
-        cancelOnAbilityEnd: 0
-        cooldownType: 0
-        maxCharges: 2
-        chargeTime: 10
-    - rid: 4684207772497084429
-      type: {class: EndAbilityTaskNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
-      data:
-        guid: 011aad56-e96c-41eb-9d85-e793d74a40bb
-        nodeType: 7
-        position: {x: -333.6, y: -1780}
-        targetType: 1
-        endType: 0
-    - rid: 4684207789798588423
+    - rid: 661027767992713490
       type: {class: HealEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: 5fb21a71-2fff-4477-b79b-4c1a8bc10f9a
@@ -233,7 +135,105 @@ MonoBehaviour:
         healMMCUseSnapshot: 1
         healMultiplyByStackCount: 0
         healCalculationType: 0
-    - rid: 4684207789798588424
+    - rid: 661027767992713491
+      type: {class: EndAbilityTaskNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 011aad56-e96c-41eb-9d85-e793d74a40bb
+        nodeType: 7
+        position: {x: -333.6, y: -1780}
+        targetType: 1
+        endType: 0
+    - rid: 661027767992713492
+      type: {class: CooldownEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: c28fb88d-51b1-47b2-be59-859e0ac638e3
+        nodeType: 10
+        position: {x: -1223.2, y: -1826.4}
+        targetType: 1
+        assetTags:
+          _tags: []
+        grantedTags:
+          _tags:
+          - _name: CD.RecBlood
+            _hashCode: 1163914435
+            _shortName: "\u56DE\u8840"
+            _ancestorHashCodes: aba22dbc
+            _ancestorNames:
+            - CD
+        applicationRequiredTags:
+          _tags: []
+        applicationImmunityTags:
+          _tags: []
+        removeGameEffectsWithTags:
+          _tags: []
+        durationType: 1
+        duration: 3
+        isPeriodic: 0
+        period: 1
+        executeOnApplication: 0
+        attributeModifiers: []
+        stackType: 0
+        stackLimit: 0
+        stackDurationRefreshPolicy: 0
+        stackPeriodResetPolicy: 0
+        stackExpirationPolicy: 0
+        stackOverflowPolicy: 0
+        ongoingRequiredTags:
+          _tags: []
+        cancelOnAbilityEnd: 0
+        cooldownType: 0
+        maxCharges: 2
+        chargeTime: 10
+    - rid: 661027767992713493
+      type: {class: AbilityNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 356907e0-1488-4128-bfcc-7ff73cfc3330
+        nodeType: 0
+        position: {x: -902.4, y: -1844}
+        targetType: 1
+        skillId: 1008
+        assetTags:
+          _tags: []
+        cancelAbilitiesWithTags:
+          _tags: []
+        blockAbilitiesWithTags:
+          _tags: []
+        activationOwnedTags:
+          _tags: []
+        activationRequiredTags:
+          _tags: []
+        activationBlockedTags:
+          _tags:
+          - _name: CD.RecBlood
+            _hashCode: 1163914435
+            _shortName: "\u56DE\u8840"
+            _ancestorHashCodes: aba22dbc
+            _ancestorNames:
+            - CD
+        ongoingBlockedTags:
+          _tags: []
+        eventOutputPorts: []
+    - rid: 661027767992713494
+      type: {class: ParticleCueNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: cde57fb8-b693-4da8-a4a8-fd61e56c5dcd
+        nodeType: 12
+        position: {x: -304, y: -2072}
+        targetType: 1
+        requiredTags:
+          _tags: []
+        immunityTags:
+          _tags: []
+        destroyWithNode: 0
+        positionSource: 0
+        particlePrefab: {fileID: 3966591633886693288, guid: 876bc2ad5530efd4881e54e3550d1f48,
+          type: 3}
+        particleBindingName: down
+        particleOffset: {x: 0, y: 0, z: 0}
+        particleScale: {x: 1, y: 1, z: 1}
+        attachToTarget: 0
+        particleLoop: 0
+    - rid: 661027767992713495
       type: {class: FloatingTextCueNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: becb4d53-8a9e-4dc0-95a3-618d1e79ecc7

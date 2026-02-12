@@ -18,7 +18,6 @@ public sealed class TableSkillGraph :  Luban.EditorBeanBase
 {
     public TableSkillGraph()
     {
-            SkillId = "";
             Name = "";
             Description = "";
             NodesJsons = new System.Collections.Generic.List<NodeJson>();
@@ -32,14 +31,6 @@ public sealed class TableSkillGraph :  Luban.EditorBeanBase
             if (_fieldJson != null)
             {
                 if(!_fieldJson.IsNumber) { throw new SerializationException(); }  Id = _fieldJson;
-            }
-        }
-        
-        { 
-            var _fieldJson = _json["SkillId"];
-            if (_fieldJson != null)
-            {
-                if(!_fieldJson.IsString) { throw new SerializationException(); }  SkillId = _fieldJson;
             }
         }
         
@@ -84,11 +75,6 @@ public sealed class TableSkillGraph :  Luban.EditorBeanBase
         }
         {
 
-            if (SkillId == null) { throw new System.ArgumentNullException(); }
-            _json["SkillId"] = new JSONString(SkillId);
-        }
-        {
-
             if (Name == null) { throw new System.ArgumentNullException(); }
             _json["Name"] = new JSONString(Name);
         }
@@ -125,11 +111,6 @@ public sealed class TableSkillGraph :  Luban.EditorBeanBase
     /// 主键ID
     /// </summary>
     public int Id;
-
-    /// <summary>
-    /// 技能标识
-    /// </summary>
-    public string SkillId;
 
     /// <summary>
     /// 技能名称

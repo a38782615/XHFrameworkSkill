@@ -17,7 +17,6 @@ public sealed partial class TableSkillGraph : Luban.BeanBase
     public TableSkillGraph(ByteBuf _buf) 
     {
         Id = _buf.ReadInt();
-        SkillId = _buf.ReadString();
         Name = _buf.ReadString();
         Description = _buf.ReadString();
         {int n0 = _buf.ReadSize(); NodesJsons = new System.Collections.Generic.List<NodeJson>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { NodeJson _e0;  _e0 = global::cfg.NodeJson.DeserializeNodeJson(_buf); NodesJsons.Add(_e0);}}
@@ -33,10 +32,6 @@ public sealed partial class TableSkillGraph : Luban.BeanBase
     /// 主键ID
     /// </summary>
     public readonly int Id;
-    /// <summary>
-    /// 技能标识
-    /// </summary>
-    public readonly string SkillId;
     /// <summary>
     /// 技能名称
     /// </summary>
@@ -66,7 +61,6 @@ public sealed partial class TableSkillGraph : Luban.BeanBase
     {
         return "{ "
         + "Id:" + Id + ","
-        + "SkillId:" + SkillId + ","
         + "Name:" + Name + ","
         + "Description:" + Description + ","
         + "NodesJsons:" + Luban.StringUtil.CollectionToString(NodesJsons) + ","

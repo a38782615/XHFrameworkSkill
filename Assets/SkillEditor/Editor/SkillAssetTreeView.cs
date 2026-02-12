@@ -61,7 +61,6 @@ namespace SkillEditor.Editor
             root.AddChild(rootFolder);
 
             BuildTreeRecursive(RootPath, rootFolder, 1);
-
             SetupDepthsFromParentsAndChildren(root);
 
             // Expand the root SkillAsset folder by default

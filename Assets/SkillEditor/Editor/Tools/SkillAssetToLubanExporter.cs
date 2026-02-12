@@ -21,12 +21,12 @@ namespace SkillEditor.Editor.Tools
         private const string SKILL_ASSET_PATH = "Assets/Unity/Resources/ScriptObject/SkillAsset";
         private const string EXCEL_PATH = "Luban/MiniTemplate/Datas/#SkillGraph.xlsx";
         private const int DATA_START_ROW = 5; // 数据从第5行开始
-        
+
         private Vector2 _scrollPosition;
         private List<SkillGraphData> _skillAssets = new List<SkillGraphData>();
         private List<bool> _selectedAssets = new List<bool>();
         private bool _selectAll = true;
-        
+
         [MenuItem("SkillEditor/导出技能到 Luban Excel")]
         public static void ShowWindow()
         {
@@ -40,7 +40,7 @@ namespace SkillEditor.Editor.Tools
         {
             var guids = AssetDatabase.FindAssets("t:SkillGraphData", new[] { SKILL_ASSET_PATH });
             var skills = new List<SkillGraphData>();
-            
+
             foreach (var guid in guids)
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
@@ -48,7 +48,7 @@ namespace SkillEditor.Editor.Tools
                 if (asset != null)
                     skills.Add(asset);
             }
-            
+
             if (skills.Count > 0)
             {
                 ExportToExcel(skills);
@@ -64,7 +64,7 @@ namespace SkillEditor.Editor.Tools
         {
             _skillAssets.Clear();
             _selectedAssets.Clear();
-            
+
             var guids = AssetDatabase.FindAssets("t:SkillGraphData", new[] { SKILL_ASSET_PATH });
             foreach (var guid in guids)
             {
@@ -76,7 +76,7 @@ namespace SkillEditor.Editor.Tools
                     _selectedAssets.Add(true);
                 }
             }
-            
+
             Debug.Log($"[SkillExporter] 找到 {_skillAssets.Count} 个技能资源");
         }
 
@@ -86,12 +86,12 @@ namespace SkillEditor.Editor.Tools
             EditorGUILayout.LabelField("技能资源导出工具", EditorStyles.boldLabel);
             EditorGUILayout.HelpBox("将 SkillAsset 导出到 Luban Excel 表 (#SkillGraph.xlsx)\n从第5行开始写入数据，保持表头不变", MessageType.Info);
             EditorGUILayout.Space(5);
-            
+
             if (GUILayout.Button("刷新技能列表", GUILayout.Height(25)))
                 LoadSkillAssets();
-            
+
             EditorGUILayout.Space(10);
-            
+
             EditorGUI.BeginChangeCheck();
             _selectAll = EditorGUILayout.Toggle("全选", _selectAll);
             if (EditorGUI.EndChangeCheck())
@@ -99,10 +99,10 @@ namespace SkillEditor.Editor.Tools
                 for (int i = 0; i < _selectedAssets.Count; i++)
                     _selectedAssets[i] = _selectAll;
             }
-            
+
             EditorGUILayout.Space(5);
             EditorGUILayout.LabelField($"技能列表 ({_skillAssets.Count} 个)", EditorStyles.boldLabel);
-            
+
             _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition, GUILayout.Height(300));
             for (int i = 0; i < _skillAssets.Count; i++)
             {
@@ -113,20 +113,20 @@ namespace SkillEditor.Editor.Tools
                 EditorGUILayout.EndHorizontal();
             }
             EditorGUILayout.EndScrollView();
-            
+
             EditorGUILayout.Space(10);
-            
+
             GUI.backgroundColor = Color.green;
             if (GUILayout.Button("导出选中的技能到 Excel", GUILayout.Height(40)))
                 ExportSelectedSkills();
             GUI.backgroundColor = Color.white;
-            
+
             EditorGUILayout.Space(5);
-            
+
             var outputPath = Path.Combine(Application.dataPath, "..", EXCEL_PATH);
             EditorGUILayout.LabelField("输出路径:", EditorStyles.boldLabel);
             EditorGUILayout.SelectableLabel(outputPath, EditorStyles.textField, GUILayout.Height(20));
-            
+
             if (GUILayout.Button("打开 Excel 文件"))
             {
                 if (File.Exists(outputPath))
@@ -142,13 +142,13 @@ namespace SkillEditor.Editor.Tools
                 if (_selectedAssets[i])
                     selectedSkills.Add(_skillAssets[i]);
             }
-            
+
             if (selectedSkills.Count == 0)
             {
                 EditorUtility.DisplayDialog("提示", "请至少选择一个技能", "确定");
                 return;
             }
-            
+
             ExportToExcel(selectedSkills);
             EditorUtility.DisplayDialog("导出成功", $"已导出 {selectedSkills.Count} 个技能到 Excel", "确定");
         }
@@ -161,72 +161,67 @@ namespace SkillEditor.Editor.Tools
             try
             {
                 var excelPath = Path.Combine(Application.dataPath, "..", EXCEL_PATH);
-                
+
                 // 生成数据行
                 var dataRows = new List<string[]>();
-                int skillId = 1;
-                
+
                 foreach (var skill in skills)
                 {
                     int nodeCount = skill.nodes?.Count ?? 0;
                     int connCount = skill.connections?.Count ?? 0;
                     int maxRows = Math.Max(Math.Max(nodeCount, connCount), 1);
-                    
+
                     for (int i = 0; i < maxRows; i++)
                     {
                         var row = new string[8];
-                        
+
                         // A列: 空
                         row[0] = "";
-                        
+
                         // 第一行写基础信息
                         if (i == 0)
                         {
-                            row[1] = skillId.ToString();         // B: Id
-                            row[2] = skill.SkillId ?? "";        // C: SkillId
-                            row[3] = skill.name ?? "";           // D: Name
-                            row[4] = "";                         // E: Description
+                            row[1] = skill.SkillId;         // B: Id
+                            row[2] = skill.name ?? "";           // D: Name
+                            row[3] = "";                         // E: Description
                         }
                         else
                         {
                             row[1] = "";
                             row[2] = "";
                             row[3] = "";
-                            row[4] = "";
                         }
-                        
+
                         // F: nodeType, G: content
                         if (i < nodeCount && skill.nodes[i] != null)
                         {
                             var node = skill.nodes[i];
-                            row[5] = ((int)node.nodeType).ToString();
-                            row[6] = JsonUtility.ToJson(node);
+                            row[4] = ((int)node.nodeType).ToString();
+                            row[5] = JsonUtility.ToJson(node);
                         }
                         else
                         {
+                            row[4] = "";
                             row[5] = "";
-                            row[6] = "";
                         }
-                        
+
                         // H: ConnectionsJson
                         if (i < connCount && skill.connections[i] != null)
                         {
-                            row[7] = JsonUtility.ToJson(skill.connections[i]);
+                            row[6] = JsonUtility.ToJson(skill.connections[i]);
                         }
                         else
                         {
-                            row[7] = "";
+                            row[6] = "";
                         }
-                        
+
                         dataRows.Add(row);
                     }
-                    
-                    skillId++;
                 }
-                
+
                 // 直接修改 xlsx 文件
                 UpdateExcelData(excelPath, dataRows, DATA_START_ROW);
-                
+
                 Debug.Log($"[SkillExporter] 导出成功！共 {skills.Count} 个技能，{dataRows.Count} 行数据");
             }
             catch (Exception e)
@@ -243,7 +238,7 @@ namespace SkillEditor.Editor.Tools
         {
             // xlsx 是 zip 格式，直接操作 xml
             var tempPath = excelPath + ".tmp";
-            
+
             using (var originalZip = ZipFile.Open(excelPath, ZipArchiveMode.Read))
             using (var newZip = ZipFile.Open(tempPath, ZipArchiveMode.Create))
             {
@@ -285,7 +280,7 @@ namespace SkillEditor.Editor.Tools
                     }
                 }
             }
-            
+
             // 替换原文件
             File.Delete(excelPath);
             File.Move(tempPath, excelPath);
@@ -295,13 +290,13 @@ namespace SkillEditor.Editor.Tools
         {
             var doc = new XmlDocument();
             doc.LoadXml(xml);
-            
+
             var nsManager = new XmlNamespaceManager(doc.NameTable);
             nsManager.AddNamespace("x", "http://schemas.openxmlformats.org/spreadsheetml/2006/main");
-            
+
             var sheetData = doc.SelectSingleNode("//x:sheetData", nsManager);
             if (sheetData == null) return xml;
-            
+
             // 删除从 startRow 开始的所有行
             var rowsToRemove = new List<XmlNode>();
             foreach (XmlNode row in sheetData.SelectNodes($"x:row[@r >= {startRow}]", nsManager))
@@ -312,21 +307,21 @@ namespace SkillEditor.Editor.Tools
             {
                 sheetData.RemoveChild(row);
             }
-            
+
             // 添加新数据行
             for (int i = 0; i < dataRows.Count; i++)
             {
                 var rowNum = startRow + i;
                 var rowElement = doc.CreateElement("row", "http://schemas.openxmlformats.org/spreadsheetml/2006/main");
                 rowElement.SetAttribute("r", rowNum.ToString());
-                
+
                 var rowData = dataRows[i];
                 for (int col = 0; col < rowData.Length; col++)
                 {
                     var cellRef = GetCellReference(col, rowNum);
                     var cellElement = doc.CreateElement("c", "http://schemas.openxmlformats.org/spreadsheetml/2006/main");
                     cellElement.SetAttribute("r", cellRef);
-                    
+
                     var value = rowData[col];
                     if (!string.IsNullOrEmpty(value))
                     {
@@ -348,13 +343,13 @@ namespace SkillEditor.Editor.Tools
                             cellElement.AppendChild(isElement);
                         }
                     }
-                    
+
                     rowElement.AppendChild(cellElement);
                 }
-                
+
                 sheetData.AppendChild(rowElement);
             }
-            
+
             return doc.OuterXml;
         }
 

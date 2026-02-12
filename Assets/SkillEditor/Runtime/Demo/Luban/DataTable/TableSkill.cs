@@ -18,6 +18,7 @@ public sealed partial class TableSkill : Luban.BeanBase
     {
         Id = _buf.ReadInt();
         Name = _buf.ReadString();
+        Desc = _buf.ReadString();
         SkillGraphDataPath = _buf.ReadString();
         IconPath = _buf.ReadString();
     }
@@ -29,6 +30,7 @@ public sealed partial class TableSkill : Luban.BeanBase
 
     public readonly int Id;
     public readonly string Name;
+    public readonly string Desc;
     /// <summary>
     /// 资源名称
     /// </summary>
@@ -50,6 +52,7 @@ public sealed partial class TableSkill : Luban.BeanBase
         return "{ "
         + "Id:" + Id + ","
         + "Name:" + Name + ","
+        + "Desc:" + Desc + ","
         + "SkillGraphDataPath:" + SkillGraphDataPath + ","
         + "IconPath:" + IconPath + ","
         + "}";

@@ -1,57 +1,68 @@
 [
   {
     "Id": 1001,
-    "Name": "横扫",
+    "Name": "Sweep",
+    "Desc": "横扫",
     "IconPath": "Sprites/SkillIcon/01101"
   },
   {
     "Id": 1002,
-    "Name": "流血",
+    "Name": "Blood",
+    "Desc": "流血",
     "IconPath": "Sprites/SkillIcon/01102"
   },
   {
     "Id": 1003,
-    "Name": "践踏",
+    "Name": "RuFood",
+    "Desc": "践踏",
     "IconPath": "Sprites/SkillIcon/01103"
   },
   {
     "Id": 1004,
-    "Name": "旋风斩",
+    "Name": "Wind",
+    "Desc": "旋风斩",
     "IconPath": "Sprites/SkillIcon/01104"
   },
   {
     "Id": 1005,
-    "Name": "神罗天正",
+    "Name": "God",
+    "Desc": "神罗天正",
     "IconPath": "Sprites/SkillIcon/01105"
   },
   {
     "Id": 1006,
-    "Name": "万象天引",
+    "Name": "Wan",
+    "Desc": "万象天引",
     "IconPath": "Sprites/SkillIcon/01106"
   },
   {
     "Id": 1007,
-    "Name": "回血",
+    "Name": "RecBlood",
+    "Desc": "回血",
     "IconPath": "Sprites/SkillIcon/01107"
   },
   {
     "Id": 1008,
-    "Name": "三火球",
+    "Name": "ThreeFire",
+    "Desc": "三火球",
     "IconPath": "Sprites/SkillIcon/01108"
   },
   {
     "Id": 1009,
-    "Name": "急速",
+    "Name": "SpeedUp",
+    "Desc": "急速",
     "IconPath": "Sprites/SkillIcon/01209"
   },
   {
     "Id": 2001,
-    "Name": "被动回血",
+    "Name": "BeRecBlood",
+    "Desc": "被动回血",
     "IconPath": "Sprites/SkillIcon/01210"
   },
   {
     "Id": 7001,
-    "Name": "火球术",
+    "Name": "FireCircle",
+    "Desc": "火球术",
     "IconPath": ""
   }
 ]
