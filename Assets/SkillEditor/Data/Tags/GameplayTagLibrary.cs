@@ -40,59 +40,59 @@ namespace SkillEditor.Data
         public static GameplayTag CD { get; } = new GameplayTag("CD");
 
         /// <summary>
-        /// CD.万象天引
+        /// CD.BeRecBlood
         /// </summary>
-        public static GameplayTag CD_万象天引 { get; } = new GameplayTag("CD.万象天引");
+        public static GameplayTag CD_BeRecBlood { get; } = new GameplayTag("CD.BeRecBlood");
 
         /// <summary>
-        /// CD.三火球
+        /// CD.Blood
         /// </summary>
-        public static GameplayTag CD_三火球 { get; } = new GameplayTag("CD.三火球");
+        public static GameplayTag CD_Blood { get; } = new GameplayTag("CD.Blood");
 
         /// <summary>
-        /// CD.回血
+        /// CD.FireCircle
         /// </summary>
-        public static GameplayTag CD_回血 { get; } = new GameplayTag("CD.回血");
+        public static GameplayTag CD_FireCircle { get; } = new GameplayTag("CD.FireCircle");
 
         /// <summary>
-        /// CD.急速
+        /// CD.God
         /// </summary>
-        public static GameplayTag CD_急速 { get; } = new GameplayTag("CD.急速");
+        public static GameplayTag CD_God { get; } = new GameplayTag("CD.God");
 
         /// <summary>
-        /// CD.旋风斩
+        /// CD.RecBlood
         /// </summary>
-        public static GameplayTag CD_旋风斩 { get; } = new GameplayTag("CD.旋风斩");
+        public static GameplayTag CD_RecBlood { get; } = new GameplayTag("CD.RecBlood");
 
         /// <summary>
-        /// CD.横扫
+        /// CD.RuFood
         /// </summary>
-        public static GameplayTag CD_横扫 { get; } = new GameplayTag("CD.横扫");
+        public static GameplayTag CD_RuFood { get; } = new GameplayTag("CD.RuFood");
 
         /// <summary>
-        /// CD.流血
+        /// CD.SpeedUp
         /// </summary>
-        public static GameplayTag CD_流血 { get; } = new GameplayTag("CD.流血");
+        public static GameplayTag CD_SpeedUp { get; } = new GameplayTag("CD.SpeedUp");
 
         /// <summary>
-        /// CD.火球术
+        /// CD.Sweep
         /// </summary>
-        public static GameplayTag CD_火球术 { get; } = new GameplayTag("CD.火球术");
+        public static GameplayTag CD_Sweep { get; } = new GameplayTag("CD.Sweep");
 
         /// <summary>
-        /// CD.神罗天正
+        /// CD.ThreeFire
         /// </summary>
-        public static GameplayTag CD_神罗天正 { get; } = new GameplayTag("CD.神罗天正");
+        public static GameplayTag CD_ThreeFire { get; } = new GameplayTag("CD.ThreeFire");
 
         /// <summary>
-        /// CD.被动回血
+        /// CD.Wan
         /// </summary>
-        public static GameplayTag CD_被动回血 { get; } = new GameplayTag("CD.被动回血");
+        public static GameplayTag CD_Wan { get; } = new GameplayTag("CD.Wan");
 
         /// <summary>
-        /// CD.践踏
+        /// CD.Wind
         /// </summary>
-        public static GameplayTag CD_践踏 { get; } = new GameplayTag("CD.践踏");
+        public static GameplayTag CD_Wind { get; } = new GameplayTag("CD.Wind");
 
         /// <summary>
         /// unitType
@@ -100,14 +100,14 @@ namespace SkillEditor.Data
         public static GameplayTag unitType { get; } = new GameplayTag("unitType");
 
         /// <summary>
-        /// unitType.boss
-        /// </summary>
-        public static GameplayTag unitType_boss { get; } = new GameplayTag("unitType.boss");
-
-        /// <summary>
         /// unitType.hero
         /// </summary>
         public static GameplayTag unitType_hero { get; } = new GameplayTag("unitType.hero");
+
+        /// <summary>
+        /// unitType.monster
+        /// </summary>
+        public static GameplayTag unitType_monster { get; } = new GameplayTag("unitType.monster");
 
         #endregion
 
@@ -123,20 +123,20 @@ namespace SkillEditor.Data
             ["Buff.DeBuff.Dot"] = Buff_DeBuff_Dot,
             ["Buff.DeBuff.Stun"] = Buff_DeBuff_Stun,
             ["CD"] = CD,
-            ["CD.万象天引"] = CD_万象天引,
-            ["CD.三火球"] = CD_三火球,
-            ["CD.回血"] = CD_回血,
-            ["CD.急速"] = CD_急速,
-            ["CD.旋风斩"] = CD_旋风斩,
-            ["CD.横扫"] = CD_横扫,
-            ["CD.流血"] = CD_流血,
-            ["CD.火球术"] = CD_火球术,
-            ["CD.神罗天正"] = CD_神罗天正,
-            ["CD.被动回血"] = CD_被动回血,
-            ["CD.践踏"] = CD_践踏,
+            ["CD.BeRecBlood"] = CD_BeRecBlood,
+            ["CD.Blood"] = CD_Blood,
+            ["CD.FireCircle"] = CD_FireCircle,
+            ["CD.God"] = CD_God,
+            ["CD.RecBlood"] = CD_RecBlood,
+            ["CD.RuFood"] = CD_RuFood,
+            ["CD.SpeedUp"] = CD_SpeedUp,
+            ["CD.Sweep"] = CD_Sweep,
+            ["CD.ThreeFire"] = CD_ThreeFire,
+            ["CD.Wan"] = CD_Wan,
+            ["CD.Wind"] = CD_Wind,
             ["unitType"] = unitType,
-            ["unitType.boss"] = unitType_boss,
             ["unitType.hero"] = unitType_hero,
+            ["unitType.monster"] = unitType_monster,
         };
 
         #endregion

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2abec0374da61478151f6b840fbb7a, type: 3}
   m_Name: "\u4E07\u8C61\u5929\u5F15"
   m_EditorClassIdentifier: 
+  SkillId: Skill_Wan
   nodes:
   - rid: 4684207772497084419
   - rid: 4684207772497084431

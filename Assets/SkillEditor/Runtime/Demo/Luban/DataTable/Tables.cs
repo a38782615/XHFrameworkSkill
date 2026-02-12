@@ -15,12 +15,14 @@ public partial class Tables
 {
     public TbHero TbHero {get; }
     public TbSkill TbSkill {get; }
+    public TbSkillGraph TbSkillGraph {get; }
     public TbUnit TbUnit {get; }
 
     public Tables(System.Func<string, ByteBuf> loader)
     {
         TbHero = new TbHero(loader("tbhero"));
         TbSkill = new TbSkill(loader("tbskill"));
+        TbSkillGraph = new TbSkillGraph(loader("tbskillgraph"));
         TbUnit = new TbUnit(loader("tbunit"));
         ResolveRef();
     }
@@ -29,6 +31,7 @@ public partial class Tables
     {
         TbHero.ResolveRef(this);
         TbSkill.ResolveRef(this);
+        TbSkillGraph.ResolveRef(this);
         TbUnit.ResolveRef(this);
     }
 }
