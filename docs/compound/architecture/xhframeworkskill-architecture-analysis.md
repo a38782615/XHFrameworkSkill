@@ -1,6 +1,7 @@
 # XHFrameworkSkill 项目架构分析
 
 > 创建时间: 2026-02-12  
+> 更新时间: 2026-02-12  
 > 分类: architecture  
 > 标签: `unity` `gas` `skill-system` `node-editor` `gameplay-ability-system` `buff-system`
 
@@ -16,6 +17,16 @@
 
 ---
 
+## 程序集结构 (Assembly Definition)
+
+| 程序集 | 路径 | 职责 |
+|--------|------|------|
+| `Skill.Data` | `Assets/SkillEditor/Data/` | 数据定义层（节点数据、标签、属性等） |
+| `Skill.Runtime` | `Assets/SkillEditor/Runtime/` | 运行时逻辑（GAS 核心、效果执行等） |
+| `SkillEditor.Editor` | `Assets/SkillEditor/Editor/` | 编辑器工具（节点图编辑器） |
+
+---
+
 ## 核心架构
 
 ### GAS 核心系统
@@ -26,7 +37,7 @@
 |------|------|
 | `AbilitySystemComponent` | GAS 核心组件，管理技能、效果、属性、标签 |
 | `GASHost` | 全局单例驱动器，统一 Tick 更新所有 ASC |
-| `SkillDataCenter` | 技能数据中心 |
+| `SkillDataCenter` | 技能数据中心（单例），管理技能图表数据、节点缓存、连接缓存 |
 | `SpecExecutor` | 技能执行器 |
 | `SpecExecutionContext` | 技能执行上下文 |
 | `SpecFactory` | Spec 工厂，创建各类运行时实例 |
@@ -84,46 +95,78 @@
 
 **路径**: `Assets/SkillEditor/Editor/`
 
-| 文件 | 职责 |
-|------|------|
-| `SkillEditorWindow.cs` | 主编辑器窗口（菜单：Tools → Skill Editor） |
-| `SkillAssetTreeView.cs` | 左侧技能资源树 |
+```
+Editor/
+├── Base/
+│   ├── GraphView/           # 节点图视图
+│   │   ├── SkillGraphView.cs
+│   │   ├── SkillGraphView.CopyPaste.cs
+│   │   ├── SkillGraphView.NodeCreation.cs
+│   │   └── SkillGraphView.Serialization.cs
+│   ├── Inspector/           # 属性面板
+│   ├── Node/                # 节点基类
+│   │   ├── SkillNodeBase.cs
+│   │   ├── NodeFactory.cs
+│   │   ├── EffectNode.cs
+│   │   ├── TaskNode.cs
+│   │   ├── ConditionNode.cs
+│   │   └── CueNode.cs
+│   ├── SkillGraphData.cs    # 编辑器用技能图数据（ScriptableObject）
+│   └── SkillEditorConstants.cs
+├── SkillEditorWindow.cs     # 主编辑器窗口
+├── SkillAssetTreeView.cs    # 技能资源树
+└── [各节点类型编辑器]/       # Ability, Effect, Task, Condition, Cue, Tags, Attribute
+```
 
 **编辑器功能**:
 - 节点图编辑器（基于 Unity GraphView）
 - 节点属性面板（Inspector）
 - Timeline 动画编辑器
 - 快捷键支持（Ctrl+S 保存）
+- 复制粘贴支持
 
 ---
 
 ## 数据层结构
 
+### 编辑器数据 vs 运行时数据
+
+| 类型 | 类名 | 路径 | 说明 |
+|------|------|------|------|
+| 编辑器 | `SkillGraphData` | `Editor/Base/` | ScriptableObject，用于编辑器序列化 |
+| 运行时 | `SkillData` | `Data/Base/` | 纯数据类，用于运行时 |
+
+两者结构相同，都包含 `SkillId`、`nodes`、`connections`。
+
+### 数据目录结构
+
 **路径**: `Assets/SkillEditor/Data/`
 
 ```
 Data/
-├── Base/          # 基础类：NodeData, SkillGraphData, NodeType 枚举
+├── Base/          # 基础类：NodeData, SkillData, NodeType 枚举, SkillConstants
 ├── Ability/       # 技能节点数据 (AbilityNodeData)
-├── Effect/        # 效果节点数据 (Damage, Heal, Buff, Projectile...)
+├── Effect/        # 效果节点数据 (Damage, Heal, Buff, Projectile, Placement, Displace...)
 ├── Task/          # 任务节点数据 (Animation, SearchTarget, EndAbility)
 ├── Condition/     # 条件节点数据 (AttributeCompare)
 ├── Cue/           # 表现节点数据 (Particle, Sound, FloatingText)
 ├── Tags/          # 标签系统
-└── Attribute/     # 属性系统
+├── Attribute/     # 属性系统
+└── Skill.Data.asmdef
 ```
 
 ---
 
 ## Demo 示例
 
-**路径**: `Assets/Demo/`
+**路径**: `Assets/SkillEditor/Runtime/Demo/`（已移入 Runtime）
 
 | 模块 | 内容 |
 |------|------|
 | `Battle/` | Unit、Player、Monster、UnitManager、AnimationComponent |
 | `Luban/` | 配表系统（TbUnit、TbSkill） |
 | `UI/` | UI 相关 |
+| `Unitls/` | 工具类 |
 
 ---
 
@@ -167,9 +210,30 @@ Data/
 | 技能编辑器入口 | `Assets/SkillEditor/Editor/SkillEditorWindow.cs` |
 | ASC 核心组件 | `Assets/SkillEditor/Runtime/Core/AbilitySystemComponent.cs` |
 | 全局驱动器 | `Assets/SkillEditor/Runtime/Core/GASHost.cs` |
+| 技能数据中心 | `Assets/SkillEditor/Runtime/Core/SkillDataCenter.cs` |
 | 节点类型定义 | `Assets/SkillEditor/Data/Base/NodeType.cs` |
-| 技能图数据 | `Assets/SkillEditor/Data/Base/SkillGraphData.cs` |
-| 单位基类 | `Assets/Demo/Battle/Unit.cs` |
+| 运行时技能数据 | `Assets/SkillEditor/Data/Base/SkillData.cs` |
+| 编辑器技能图数据 | `Assets/SkillEditor/Editor/Base/SkillGraphData.cs` |
+| 节点基类 | `Assets/SkillEditor/Editor/Base/Node/SkillNodeBase.cs` |
+| 节点工厂 | `Assets/SkillEditor/Editor/Base/Node/NodeFactory.cs` |
+
+---
+
+## 重构记录 (2026-02-12)
+
+### 目录结构变化
+1. `Assets/Demo/` → `Assets/SkillEditor/Runtime/Demo/`（Demo 移入 Runtime）
+2. `SkillGraphData.cs` 移至 `Editor/Base/`（编辑器专用）
+3. 新增 `SkillData.cs` 在 `Data/Base/`（运行时数据）
+
+### 程序集重命名
+- `SkillEditor.Data` → `Skill.Data`
+- 新增 `Skill.Runtime`
+
+### 数据分离
+- 编辑器使用 `SkillGraphData`（ScriptableObject）
+- 运行时使用 `SkillData`（纯数据类）
+- `SkillDataCenter` 改为使用 `SkillData` 进行缓存管理
 
 ---
 

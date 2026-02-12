@@ -65,12 +65,6 @@ public class Unit : MonoBehaviour
             }
 
             var graphData = new SkillData();
-            if (graphData == null)
-            {
-                Debug.LogWarning($"[Unit] 无法加载SkillData: {skillData.SkillDataPath}");
-                continue;
-            }
-
             ownerASC.GrantAbility(graphData, skillId);
         }
     }
