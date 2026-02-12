@@ -68,7 +68,7 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 授予技能
         /// </summary>
-        public GameplayAbilitySpec GrantAbility(SkillGraphData graphData)
+        public GameplayAbilitySpec GrantAbility(SkillData graphData)
         {
             if (graphData == null)
                 return null;
@@ -83,7 +83,7 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 授予技能并设置技能ID
         /// </summary>
-        public GameplayAbilitySpec GrantAbility(SkillGraphData graphData, int skillId)
+        public GameplayAbilitySpec GrantAbility(SkillData graphData, int skillId)
         {
             var spec = GrantAbility(graphData);
             if (spec?.AbilityNodeData != null)
@@ -245,7 +245,7 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 根据图表数据查找技能
         /// </summary>
-        public GameplayAbilitySpec FindAbilityByGraphData(SkillGraphData graphData)
+        public GameplayAbilitySpec FindAbilityByGraphData(SkillData graphData)
         {
             foreach (var spec in _grantedAbilities)
             {
@@ -254,7 +254,7 @@ namespace SkillEditor.Runtime
             }
             return null;
         }
-        
+
 
         /// <summary>
         /// 根据技能ID查找技能

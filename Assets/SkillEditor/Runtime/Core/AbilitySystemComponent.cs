@@ -32,7 +32,7 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 效果容器（别名，方便访问）
         /// </summary>
-        public GameplayEffectContainer EffectContainer{ get; private set; }
+        public GameplayEffectContainer EffectContainer { get; private set; }
 
         /// <summary>
         /// 所属的GameObject
@@ -103,7 +103,7 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 授予技能
         /// </summary>
-        public GameplayAbilitySpec GrantAbility(SkillGraphData abilityData)
+        public GameplayAbilitySpec GrantAbility(SkillData abilityData)
         {
             if (abilityData == null)
                 return null;
@@ -114,7 +114,7 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 授予技能并设置技能ID
         /// </summary>
-        public GameplayAbilitySpec GrantAbility(SkillGraphData abilityData, int skillId)
+        public GameplayAbilitySpec GrantAbility(SkillData abilityData, int skillId)
         {
             if (abilityData == null)
                 return null;
@@ -259,6 +259,6 @@ namespace SkillEditor.Runtime
 
             IsInitialized = false;
         }
-        
+
     }
 }

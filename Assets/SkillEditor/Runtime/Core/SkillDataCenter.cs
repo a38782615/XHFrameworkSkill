@@ -25,9 +25,9 @@ namespace SkillEditor.Runtime
         }
 
         /// <summary>
-        /// 已注册的技能图表数据 (skillId -> SkillGraphData)
+        /// 已注册的技能图表数据 (skillId -> SkillData)
         /// </summary>
-        private readonly Dictionary<string, SkillGraphData> _skillGraphs = new Dictionary<string, SkillGraphData>();
+        private readonly Dictionary<string, SkillData> _skillGraphs = new Dictionary<string, SkillData>();
 
         /// <summary>
         /// 节点数据缓存 (skillId:nodeGuid -> NodeData)
@@ -49,13 +49,13 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 注册技能图表数据
         /// </summary>
-        public void RegisterSkillGraph(SkillGraphData graphData)
+        public void RegisterSkillGraph(SkillData graphData)
         {
             if (graphData == null)
                 return;
 
             // 使用ScriptableObject的name作为skillId
-            string skillId = graphData.name;
+            string skillId = graphData.SkillId;
             if (string.IsNullOrEmpty(skillId))
                 return;
 
@@ -83,7 +83,7 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 构建缓存
         /// </summary>
-        private void BuildCache(SkillGraphData graphData, string skillId)
+        private void BuildCache(SkillData graphData, string skillId)
         {
             // 构建节点缓存
             if (graphData.nodes != null)
@@ -163,7 +163,7 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 获取技能图表数据
         /// </summary>
-        public SkillGraphData GetSkillGraph(string skillId)
+        public SkillData GetSkillGraph(string skillId)
         {
             return _skillGraphs.TryGetValue(skillId, out var graph) ? graph : null;
         }
@@ -200,7 +200,7 @@ namespace SkillEditor.Runtime
         {
             var result = new List<NodeData>();
             string connectionKey = GetConnectionKey(skillId, nodeGuid, outputPortName);
-            
+
             if (!_connectionCache.TryGetValue(connectionKey, out var connections))
                 return result;
 

@@ -64,10 +64,10 @@ public class Unit : MonoBehaviour
                 continue;
             }
 
-            var graphData = Resources.Load<SkillGraphData>(skillData.SkillGraphDataPath);
+            var graphData = new SkillData();
             if (graphData == null)
             {
-                Debug.LogWarning($"[Unit] 无法加载SkillGraphData: {skillData.SkillGraphDataPath}");
+                Debug.LogWarning($"[Unit] 无法加载SkillData: {skillData.SkillDataPath}");
                 continue;
             }
 

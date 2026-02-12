@@ -137,7 +137,7 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 技能图表数据（从数据中心获取）
         /// </summary>
-        public SkillGraphData GraphData => SkillDataCenter.Instance.GetSkillGraph(SkillId);
+        public SkillData GraphData => SkillDataCenter.Instance.GetSkillGraph(SkillId);
 
         /// <summary>
         /// 技能节点数据
@@ -229,15 +229,15 @@ namespace SkillEditor.Runtime
 
         // ============ 构造函数 ============
 
-        public GameplayAbilitySpec(SkillGraphData graphData, AbilitySystemComponent owner)
+        public GameplayAbilitySpec(SkillData graphData, AbilitySystemComponent owner)
         {
             SpecId = Guid.NewGuid().ToString();
             Owner = owner;
-       
+
             // 使用ScriptableObject的name作为skillId
             if (graphData != null)
             {
-                SkillId = graphData.name;
+                SkillId = graphData.SkillId;
                 // 注册到数据中心
                 SkillDataCenter.Instance.RegisterSkillGraph(graphData);
             }
@@ -253,7 +253,7 @@ namespace SkillEditor.Runtime
             {
                 Tags = new AbilityTagContainer(AbilityNodeData);
             }
-          
+
         }
 
         /// <summary>
@@ -578,7 +578,7 @@ namespace SkillEditor.Runtime
             ResetTimeCues();
 
             // 播放动画
-            PlayAnimation(_animationName,_isAnimationLooping);
+            PlayAnimation(_animationName, _isAnimationLooping);
 
             // 执行消耗节点（扣除资源）
             if (!string.IsNullOrEmpty(_abilityNodeGuid))
@@ -706,14 +706,14 @@ namespace SkillEditor.Runtime
                 Cancel();
             }
         }
-        
-        public void OnGameplayEvent(GameplayEventType  gameplayEvent)
+
+        public void OnGameplayEvent(GameplayEventType gameplayEvent)
         {
             foreach (var AbilityEventPortData in AbilityNodeData.eventOutputPorts)
             {
-                if (AbilityEventPortData.eventType==gameplayEvent)
+                if (AbilityEventPortData.eventType == gameplayEvent)
                 {
-                    SpecExecutor.ExecuteConnectedNodes(SkillId, _abilityNodeGuid,  AbilityEventPortData.PortId, _context);
+                    SpecExecutor.ExecuteConnectedNodes(SkillId, _abilityNodeGuid, AbilityEventPortData.PortId, _context);
                 }
             }
         }
@@ -808,7 +808,7 @@ namespace SkillEditor.Runtime
         /// <summary>
         /// 播放动画
         /// </summary>
-        private void PlayAnimation(string name,bool loop)
+        private void PlayAnimation(string name, bool loop)
         {
             if (Owner?.Owner == null || string.IsNullOrEmpty(name))
                 return;
@@ -816,7 +816,7 @@ namespace SkillEditor.Runtime
             var animator = Owner.Owner.GetComponent<AnimationComponent>();
             if (animator != null)
             {
-                animator.PlayAnimation(name,loop);
+                animator.PlayAnimation(name, loop);
             }
         }
 
@@ -895,7 +895,7 @@ namespace SkillEditor.Runtime
                     var triggeredSpecs = SpecExecutor.ExecuteConnectedCueNodes(SkillId, _animationNodeGuid, tc.PortId, _context);
                     foreach (var triggeredSpec in triggeredSpecs)
                     {
-                        if (triggeredSpec != null&&triggeredSpec.DestroyWithNode)
+                        if (triggeredSpec != null && triggeredSpec.DestroyWithNode)
                         {
                             tc.TriggeredCueSpecs.Add(triggeredSpec);
                         }
