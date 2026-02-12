@@ -74,9 +74,9 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u4E07\u8C61\u5929\u5F15"
-            _hashCode: -531853721
-            _shortName: "\u4E07\u8C61\u5929\u5F15"
+          - _name: CD.Wan
+            _hashCode: 87403585
+            _shortName: Wan
             _ancestorHashCodes: aba22dbc
             _ancestorNames:
             - CD
@@ -178,9 +178,9 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u4E07\u8C61\u5929\u5F15"
-            _hashCode: -531853721
-            _shortName: "\u4E07\u8C61\u5929\u5F15"
+          - _name: CD.Wan
+            _hashCode: 87403585
+            _shortName: Wan
             _ancestorHashCodes: aba22dbc
             _ancestorNames:
             - CD

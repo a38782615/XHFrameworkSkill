@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cn.lys.aibridge": "https://github.com/a38782615/AIBridge.git",
     "com.code-philosophy.luban": "file:../CustomPackages/luban_unity",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.cinemachine": "3.1.5",

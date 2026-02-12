@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "cn.lys.aibridge": {
+      "version": "https://github.com/a38782615/AIBridge.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      },
+      "hash": "b00b88a6530a4483fd78d25a12f30b1889b0f3b4"
+    },
     "com.boxqkrtm.ide.cursor": {
       "version": "file:com.unity.ide.cursor",
       "depth": 0,
@@ -94,6 +103,13 @@
     "com.unity.nuget.mono-cecil": {
       "version": "1.11.5",
       "depth": 3,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
