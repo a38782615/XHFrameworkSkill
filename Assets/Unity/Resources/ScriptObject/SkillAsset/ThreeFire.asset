@@ -92,7 +92,7 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u4E09\u706B\u7403"
+          - _name: CD.ThreeFire
             _hashCode: -1656226246
             _shortName: "\u4E09\u706B\u7403"
             _ancestorHashCodes: aba22dbc
@@ -173,7 +173,7 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u4E09\u706B\u7403"
+          - _name: CD.ThreeFire
             _hashCode: -1656226246
             _shortName: "\u4E09\u706B\u7403"
             _ancestorHashCodes: aba22dbc

@@ -74,7 +74,7 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u56DE\u8840"
+          - _name: CD.RecBlood
             _hashCode: 1163914435
             _shortName: "\u56DE\u8840"
             _ancestorHashCodes: aba22dbc
@@ -178,7 +178,7 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u795E\u7F57\u5929\u6B63"
+          - _name: CD.God
             _hashCode: 810112138
             _shortName: "\u795E\u7F57\u5929\u6B63"
             _ancestorHashCodes: aba22dbc

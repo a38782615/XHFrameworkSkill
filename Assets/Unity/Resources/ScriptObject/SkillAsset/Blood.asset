@@ -84,7 +84,7 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u6D41\u8840"
+          - _name: CD.Blood
             _hashCode: -1868013560
             _shortName: "\u6D41\u8840"
             _ancestorHashCodes: aba22dbc
@@ -188,7 +188,7 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u6D41\u8840"
+          - _name: CD.Blood
             _hashCode: -1868013560
             _shortName: "\u6D41\u8840"
             _ancestorHashCodes: aba22dbc

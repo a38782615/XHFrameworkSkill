@@ -79,7 +79,7 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u6A2A\u626B"
+          - _name: CD.Sweep
             _hashCode: 2090173402
             _shortName: "\u6A2A\u626B"
             _ancestorHashCodes: aba22dbc
@@ -183,7 +183,7 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u6A2A\u626B"
+          - _name: CD.Sweep
             _hashCode: 2090173402
             _shortName: "\u6A2A\u626B"
             _ancestorHashCodes: aba22dbc

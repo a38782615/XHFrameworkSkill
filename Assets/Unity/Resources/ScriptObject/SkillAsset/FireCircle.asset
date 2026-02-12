@@ -84,7 +84,7 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u65CB\u98CE\u65A9"
+          - _name: CD.FireCircle
             _hashCode: 1979572373
             _shortName: "\u65CB\u98CE\u65A9"
             _ancestorHashCodes: aba22dbc
@@ -186,7 +186,7 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u65CB\u98CE\u65A9"
+          - _name: CD.FireCircle
             _hashCode: 1979572373
             _shortName: "\u65CB\u98CE\u65A9"
             _ancestorHashCodes: aba22dbc

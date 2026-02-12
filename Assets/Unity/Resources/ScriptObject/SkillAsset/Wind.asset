@@ -79,7 +79,7 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u8DF5\u8E0F"
+          - _name: CD.Wind
             _hashCode: -1394424629
             _shortName: "\u8DF5\u8E0F"
             _ancestorHashCodes: aba22dbc
@@ -183,7 +183,7 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u8DF5\u8E0F"
+          - _name: CD.Wind
             _hashCode: -1394424629
             _shortName: "\u8DF5\u8E0F"
             _ancestorHashCodes: aba22dbc

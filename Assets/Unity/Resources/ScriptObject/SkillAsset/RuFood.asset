@@ -74,7 +74,7 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u706B\u7403\u672F"
+          - _name: CD.RuFood
             _hashCode: -1710429436
             _shortName: "\u706B\u7403\u672F"
             _ancestorHashCodes: aba22dbc
@@ -162,7 +162,7 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u706B\u7403\u672F"
+          - _name: CD.RuFood
             _hashCode: -1710429436
             _shortName: "\u706B\u7403\u672F"
             _ancestorHashCodes: aba22dbc

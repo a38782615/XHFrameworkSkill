@@ -167,7 +167,7 @@ MonoBehaviour:
         stackOverflowPolicy: 0
         ongoingRequiredTags:
           _tags:
-          - _name: "CD.\u88AB\u52A8\u56DE\u8840"
+          - _name: CD.BeRecBlood
             _hashCode: -1099994396
             _shortName: "\u88AB\u52A8\u56DE\u8840"
             _ancestorHashCodes: aba22dbc
@@ -186,7 +186,7 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u88AB\u52A8\u56DE\u8840"
+          - _name: CD.BeRecBlood
             _hashCode: -1099994396
             _shortName: "\u88AB\u52A8\u56DE\u8840"
             _ancestorHashCodes: aba22dbc
