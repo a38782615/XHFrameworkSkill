@@ -24,6 +24,7 @@ namespace SkillEditor.Editor
         private Button overviewButton;
         private Button exportButton;
         private VisualElement centerPanel;
+        private bool _isGraphDirty = false;
 
         [MenuItem("Tools/Skill Editor")]
         public static void OpenWindow()
@@ -39,11 +40,15 @@ namespace SkillEditor.Editor
             rootVisualElement.RegisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
 
             // 打开编辑器时自动执行全览
-            EditorApplication.delayCall += FrameAllNodes;
+            ScheduleFrameAllNodes();
         }
 
         private void OnDisable()
         {
+            // 关闭窗口前自动保存
+            if (_isGraphDirty)
+                SaveCurrentGraph();
+
             rootVisualElement.UnregisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
             rootVisualElement.Clear();
         }
@@ -167,75 +172,77 @@ namespace SkillEditor.Editor
             return toolbar;
         }
 
+        /// <summary>
+        /// 延迟执行全览，通过 GeometryChangedEvent 确保 layout 真正完成
+        /// </summary>
+        private void ScheduleFrameAllNodes()
+        {
+            // 注册一次性的 GeometryChangedEvent，layout 完成后自动触发
+            void OnGeometryChanged(GeometryChangedEvent evt)
+            {
+                graphView.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+                // 再延迟一帧，确保子节点的 layout 也完成
+                EditorApplication.delayCall += FrameAllNodes;
+            }
+
+            if (graphView.layout.size.x > 0 && graphView.layout.size.y > 0)
+            {
+                // GraphView 自身 layout 已就绪，但节点可能还没有
+                // 延迟两帧确保节点 layout 完成
+                EditorApplication.delayCall += () => EditorApplication.delayCall += FrameAllNodes;
+            }
+            else
+            {
+                graphView.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+            }
+        }
+
         private void FrameAllNodes()
         {
             if (graphView == null || graphView.nodes.Count() == 0)
-            {
-                Debug.LogWarning("没有节点可以全览");
                 return;
-            }
 
-            // 计算所有节点的边界
-            var nodesList = graphView.nodes.ToList();
-            if (nodesList.Count == 0) return;
-
-            float minX = float.MaxValue;
-            float minY = float.MaxValue;
-            float maxX = float.MinValue;
-            float maxY = float.MinValue;
-
-            foreach (var node in nodesList)
-            {
-                var pos = node.GetPosition();
-                minX = Mathf.Min(minX, pos.x);
-                minY = Mathf.Min(minY, pos.y);
-                maxX = Mathf.Max(maxX, pos.x + pos.width);
-                maxY = Mathf.Max(maxY, pos.y + pos.height);
-            }
-
-            // 计算中心点和所需的缩放
-            float centerX = (minX + maxX) / 2f;
-            float centerY = (minY + maxY) / 2f;
-            float width = maxX - minX;
-            float height = maxY - minY;
-
-            // 添加边距
-            const float padding = 100f;
-            width += padding * 2;
-            height += padding * 2;
-
-            // 获取GraphView的可见区域大小
-            var graphViewSize = graphView.layout.size;
-            if (graphViewSize.x <= 0 || graphViewSize.y <= 0) return;
-
-            // 计算缩放比例，确保所有节点都可见
-            float scaleX = graphViewSize.x / width;
-            float scaleY = graphViewSize.y / height;
-            float scale = Mathf.Min(scaleX, scaleY, 1f); // 不超过100%缩放
-
-            // 应用缩放
-            graphView.contentViewContainer.style.scale = new Scale(new Vector2(scale, scale));
-
-            // 计算偏移量使中心点居中
-            float offsetX = graphViewSize.x / 2f - centerX * scale;
-            float offsetY = graphViewSize.y / 2f - centerY * scale;
-
-            graphView.contentViewContainer.style.translate = new Translate(offsetX, offsetY);
+            graphView.FrameAll();
         }
 
         private void SaveCurrentGraph()
         {
             if (currentGraphData == null || string.IsNullOrEmpty(currentFilePath) || graphView == null)
-            {
-                Debug.LogWarning("没有打开的技能文件可以保存");
                 return;
-            }
 
             graphView.SaveGraph(currentGraphData);
             EditorUtility.SetDirty(currentGraphData);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+
+            _isGraphDirty = false;
+            UpdateSaveButtonStyle();
             Debug.Log($"已保存: {currentFilePath}");
+        }
+
+        private void MarkGraphDirty()
+        {
+            if (_isGraphDirty) return;
+            _isGraphDirty = true;
+            UpdateSaveButtonStyle();
+        }
+
+        private void UpdateSaveButtonStyle()
+        {
+            if (saveButton == null) return;
+
+            if (_isGraphDirty)
+            {
+                saveButton.text = "● 保存 (Ctrl+S)";
+                saveButton.style.backgroundColor = new Color(0.8f, 0.6f, 0.1f, 0.8f);
+                saveButton.style.color = Color.white;
+            }
+            else
+            {
+                saveButton.text = "保存 (Ctrl+S)";
+                saveButton.style.backgroundColor = StyleKeyword.Null;
+                saveButton.style.color = StyleKeyword.Null;
+            }
         }
 
         private VisualElement CreateLeftPanel()
@@ -339,6 +346,7 @@ namespace SkillEditor.Editor
             };
 
             graphView.OnNodeSelected += OnNodeSelected;
+            graphView.OnGraphModified += MarkGraphDirty;
             graphView.SetNodeSelectionCallback();
 
             centerPanel.Add(graphView);
@@ -348,6 +356,7 @@ namespace SkillEditor.Editor
         private VisualElement CreateRightPanel()
         {
             inspectorView = new NodeInspectorView();
+            inspectorView.OnNodeDataModified += MarkGraphDirty;
             inspectorView.style.borderTopLeftRadius = 8;
             inspectorView.style.borderTopRightRadius = 8;
             inspectorView.style.borderBottomLeftRadius = 8;
@@ -376,6 +385,10 @@ namespace SkillEditor.Editor
         {
             if (string.IsNullOrEmpty(path) || !File.Exists(path) || !path.EndsWith(".asset"))
             {
+                // 切换到文件夹或无效路径前，自动保存
+                if (_isGraphDirty)
+                    SaveCurrentGraph();
+
                 graphView.ClearGraph();
                 currentFilePath = null;
                 currentGraphData = null;
@@ -383,6 +396,14 @@ namespace SkillEditor.Editor
                 UpdateUIState(false);
                 return;
             }
+
+            // 点击同一个文件时不重复加载
+            if (path == currentFilePath && currentGraphData != null)
+                return;
+
+            // 切换到其他技能文件前，自动保存当前文件
+            if (_isGraphDirty)
+                SaveCurrentGraph();
 
             currentFilePath = path;
             currentGraphData = AssetDatabase.LoadAssetAtPath<SkillGraphData>(path);
@@ -394,8 +415,11 @@ namespace SkillEditor.Editor
                 inspectorView.SetGraphContext(graphView, currentGraphData, currentFilePath);
                 UpdateUIState(true);
 
-                // 加载完成后自动执行全览
-                EditorApplication.delayCall += FrameAllNodes;
+                _isGraphDirty = false;
+                UpdateSaveButtonStyle();
+
+                // 延迟执行全览，等待 layout 计算完成
+                ScheduleFrameAllNodes();
             }
             else
             {
