@@ -35,7 +35,7 @@ namespace SkillEditor.Editor
             rootVisualElement.RegisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
 
             // 打开编辑器时自动执行全览
-            EditorApplication.delayCall += FrameAllNodes;
+            ScheduleFrameAllNodes();
         }
 
         private void OnDisable()
@@ -143,60 +143,37 @@ namespace SkillEditor.Editor
             return toolbar;
         }
 
+        /// <summary>
+        /// 延迟执行全览，通过 GeometryChangedEvent 确保 layout 真正完成
+        /// </summary>
+        private void ScheduleFrameAllNodes()
+        {
+            // 注册一次性的 GeometryChangedEvent，layout 完成后自动触发
+            void OnGeometryChanged(GeometryChangedEvent evt)
+            {
+                graphView.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+                // 再延迟一帧，确保子节点的 layout 也完成
+                EditorApplication.delayCall += FrameAllNodes;
+            }
+
+            if (graphView.layout.size.x > 0 && graphView.layout.size.y > 0)
+            {
+                // GraphView 自身 layout 已就绪，但节点可能还没有
+                // 延迟两帧确保节点 layout 完成
+                EditorApplication.delayCall += () => EditorApplication.delayCall += FrameAllNodes;
+            }
+            else
+            {
+                graphView.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+            }
+        }
+
         private void FrameAllNodes()
         {
             if (graphView == null || graphView.nodes.Count() == 0)
-            {
-                Debug.LogWarning("没有节点可以全览");
                 return;
-            }
 
-            // 计算所有节点的边界
-            var nodesList = graphView.nodes.ToList();
-            if (nodesList.Count == 0) return;
-
-            float minX = float.MaxValue;
-            float minY = float.MaxValue;
-            float maxX = float.MinValue;
-            float maxY = float.MinValue;
-
-            foreach (var node in nodesList)
-            {
-                var pos = node.GetPosition();
-                minX = Mathf.Min(minX, pos.x);
-                minY = Mathf.Min(minY, pos.y);
-                maxX = Mathf.Max(maxX, pos.x + pos.width);
-                maxY = Mathf.Max(maxY, pos.y + pos.height);
-            }
-
-            // 计算中心点和所需的缩放
-            float centerX = (minX + maxX) / 2f;
-            float centerY = (minY + maxY) / 2f;
-            float width = maxX - minX;
-            float height = maxY - minY;
-
-            // 添加边距
-            const float padding = 100f;
-            width += padding * 2;
-            height += padding * 2;
-
-            // 获取GraphView的可见区域大小
-            var graphViewSize = graphView.layout.size;
-            if (graphViewSize.x <= 0 || graphViewSize.y <= 0) return;
-
-            // 计算缩放比例，确保所有节点都可见
-            float scaleX = graphViewSize.x / width;
-            float scaleY = graphViewSize.y / height;
-            float scale = Mathf.Min(scaleX, scaleY, 1f); // 不超过100%缩放
-
-            // 应用缩放
-            graphView.contentViewContainer.style.scale = new Scale(new Vector2(scale, scale));
-
-            // 计算偏移量使中心点居中
-            float offsetX = graphViewSize.x / 2f - centerX * scale;
-            float offsetY = graphViewSize.y / 2f - centerY * scale;
-
-            graphView.contentViewContainer.style.translate = new Translate(offsetX, offsetY);
+            graphView.FrameAll();
         }
 
         private void SaveCurrentGraph()
@@ -351,6 +328,10 @@ namespace SkillEditor.Editor
                 return;
             }
 
+            // 点击同一个文件时不重复加载
+            if (path == currentFilePath && currentGraphData != null)
+                return;
+
             currentFilePath = path;
             currentGraphData = AssetDatabase.LoadAssetAtPath<SkillGraphData>(path);
 
@@ -361,8 +342,8 @@ namespace SkillEditor.Editor
                 inspectorView.SetGraphContext(graphView, currentGraphData, currentFilePath);
                 UpdateUIState(true);
 
-                // 加载完成后自动执行全览
-                EditorApplication.delayCall += FrameAllNodes;
+                // 延迟执行全览，等待 layout 计算完成
+                ScheduleFrameAllNodes();
             }
             else
             {
