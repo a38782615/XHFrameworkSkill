@@ -156,6 +156,25 @@ namespace SkillEditor.Editor
 
             var connectionCountLabel = new Label($"连接数量: {graphData.connections?.Count ?? 0}");
             contentContainer.Add(connectionCountLabel);
+
+            // 定位资源按钮
+            var locateButton = new Button(() =>
+            {
+                if (graphData != null)
+                {
+                    EditorGUIUtility.PingObject(graphData);
+                    Selection.activeObject = graphData;
+                }
+            })
+            {
+                text = "定位资源",
+                style =
+                {
+                    marginTop = 15,
+                    height = 24
+                }
+            };
+            contentContainer.Add(locateButton);
         }
 
         public void UpdateSelection(SkillNodeBase node)

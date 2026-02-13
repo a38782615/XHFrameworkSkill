@@ -155,6 +155,8 @@ namespace SkillEditor.Editor
 
             if (Directory.Exists(path))
             {
+                menu.AddItem(new GUIContent("刷新"), false, RefreshTree);
+                menu.AddSeparator("");
                 menu.AddItem(new GUIContent("新建文件夹"), false, () => CreateFolder(path));
                 menu.AddItem(new GUIContent("新建技能文件"), false, () => CreateSkillFile(path));
                 menu.AddSeparator("");

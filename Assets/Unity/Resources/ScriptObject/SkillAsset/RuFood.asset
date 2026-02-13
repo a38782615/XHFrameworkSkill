@@ -183,9 +183,9 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u8DF5\u8E0F"
-            _hashCode: -1394424629
-            _shortName: "\u8DF5\u8E0F"
+          - _name: CD.RuFood
+            _hashCode: -1045902856
+            _shortName: RuFood
             _ancestorHashCodes: aba22dbc
             _ancestorNames:
             - CD

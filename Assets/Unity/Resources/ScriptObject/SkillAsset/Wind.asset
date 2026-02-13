@@ -186,9 +186,9 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u65CB\u98CE\u65A9"
-            _hashCode: 1979572373
-            _shortName: "\u65CB\u98CE\u65A9"
+          - _name: CD.Wind
+            _hashCode: 1982736573
+            _shortName: Wind
             _ancestorHashCodes: aba22dbc
             _ancestorNames:
             - CD

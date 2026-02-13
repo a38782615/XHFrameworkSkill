@@ -252,6 +252,11 @@ namespace SkillEditor.Runtime
             if (AbilityNodeData != null)
             {
                 Tags = new AbilityTagContainer(AbilityNodeData);
+                UnityEngine.Debug.Log($"[Ability] {SkillId} Tags初始化完成, ActivationBlockedTags: [{string.Join(", ", Tags.ActivationBlockedTags.Tags ?? new GameplayTag[0])}], IsEmpty: {Tags.ActivationBlockedTags.IsEmpty}");
+            }
+            else
+            {
+                UnityEngine.Debug.LogWarning($"[Ability] {SkillId} AbilityNodeData 为空，无法初始化 Tags");
             }
 
         }
@@ -388,8 +393,12 @@ namespace SkillEditor.Runtime
             // 2. 检查激活阻止标签
             if (!Tags.ActivationBlockedTags.IsEmpty)
             {
+                UnityEngine.Debug.Log($"[Ability] {SkillId} 检查ActivationBlockedTags: [{string.Join(", ", Tags.ActivationBlockedTags.Tags)}], Owner拥有的标签: [{string.Join(", ", Owner.OwnedTags.Tags)}], HasAnyTags结果: {Owner.HasAnyTags(Tags.ActivationBlockedTags)}");
                 if (Owner.HasAnyTags(Tags.ActivationBlockedTags))
+                {
+                    UnityEngine.Debug.Log($"[Ability] {SkillId} 被阻止激活");
                     return false;
+                }
             }
 
             // 4. 检查消耗

@@ -178,9 +178,9 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: "CD.\u795E\u7F57\u5929\u6B63"
-            _hashCode: 810112138
-            _shortName: "\u795E\u7F57\u5929\u6B63"
+          - _name: CD.God
+            _hashCode: 1317201809
+            _shortName: God
             _ancestorHashCodes: aba22dbc
             _ancestorNames:
             - CD

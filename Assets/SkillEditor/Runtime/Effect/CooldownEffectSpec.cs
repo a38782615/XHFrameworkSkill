@@ -64,16 +64,27 @@ namespace SkillEditor.Runtime
 
         public override void Execute()
         {
-            if (Context == null) return;
+            if (Context == null)
+            {
+                UnityEngine.Debug.LogWarning($"[CooldownEffect] Context 为空");
+                return;
+            }
 
             var nodeData = CooldownNodeData;
-            if (nodeData == null) return;
+            if (nodeData == null)
+            {
+                UnityEngine.Debug.LogWarning($"[CooldownEffect] CooldownNodeData 为空");
+                return;
+            }
+
+            UnityEngine.Debug.Log($"[CooldownEffect] 执行CD效果, SkillId: {SkillId}, CooldownType: {nodeData.cooldownType}, GrantedTags: [{string.Join(", ", Tags.GrantedTags.Tags ?? new SkillEditor.Data.GameplayTag[0])}]");
 
             if (nodeData.cooldownType == CooldownType.Normal)
             {
                 // ========== 普通CD模式 ==========
                 // 调用基类的 Execute，走标准的持续效果流程
                 base.Execute();
+                UnityEngine.Debug.Log($"[CooldownEffect] 普通CD执行完成, Target: {Target?.Owner?.name}, IsRunning: {IsRunning}");
             }
             else
             {
