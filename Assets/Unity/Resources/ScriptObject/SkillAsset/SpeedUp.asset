@@ -102,10 +102,10 @@ MonoBehaviour:
         nodeType: 20
         position: {x: -502.66666, y: -2384}
         targetType: 1
-        skeletonDataAsset: {fileID: 11400000, guid: 4fa037b3a2d54ba46a5bbed3faf26323,
+        skeletonDataAsset: {fileID: 11400000, guid: 3754b23f7ac951e42ab7bce09051b229,
           type: 2}
-        animationName: Skill_attack_1009
-        animationDuration: 25
+        animationName: Stand
+        animationDuration: 24
         isAnimationLooping: 0
         timeEffects:
         - triggerTime: 25

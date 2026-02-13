@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e2abec0374da61478151f6b840fbb7a, type: 3}
-  m_Name: "\u6D41\u8840"
+  m_Name: Blood
   m_EditorClassIdentifier: 
+  SkillId: 1002
   nodes:
   - rid: 4684207772497084418
   - rid: 4684207772497084419
@@ -83,9 +84,9 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u6D41\u8840"
-            _hashCode: -1868013560
-            _shortName: "\u6D41\u8840"
+          - _name: CD.Blood
+            _hashCode: 274000851
+            _shortName: Blood
             _ancestorHashCodes: aba22dbc
             _ancestorNames:
             - CD

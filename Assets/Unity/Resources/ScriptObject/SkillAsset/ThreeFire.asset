@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e2abec0374da61478151f6b840fbb7a, type: 3}
-  m_Name: "\u4E09\u706B\u7403"
+  m_Name: ThreeFire
   m_EditorClassIdentifier: 
+  SkillId: 1008
   nodes:
   - rid: 4684207772497084430
   - rid: 4684207772497084419
@@ -91,9 +92,9 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u4E09\u706B\u7403"
-            _hashCode: -1656226246
-            _shortName: "\u4E09\u706B\u7403"
+          - _name: CD.ThreeFire
+            _hashCode: 960327319
+            _shortName: ThreeFire
             _ancestorHashCodes: aba22dbc
             _ancestorNames:
             - CD

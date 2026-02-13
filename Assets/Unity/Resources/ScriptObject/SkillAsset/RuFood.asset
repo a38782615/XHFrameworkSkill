@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e2abec0374da61478151f6b840fbb7a, type: 3}
-  m_Name: "\u8DF5\u8E0F"
+  m_Name: RuFood
   m_EditorClassIdentifier: 
+  SkillId: 1003
   nodes:
   - rid: 4684207772497084419
   - rid: 4684207772497084420
@@ -78,9 +79,9 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u8DF5\u8E0F"
-            _hashCode: -1394424629
-            _shortName: "\u8DF5\u8E0F"
+          - _name: CD.RuFood
+            _hashCode: -1045902856
+            _shortName: RuFood
             _ancestorHashCodes: aba22dbc
             _ancestorNames:
             - CD

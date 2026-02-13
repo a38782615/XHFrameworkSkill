@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e2abec0374da61478151f6b840fbb7a, type: 3}
-  m_Name: "\u4E07\u8C61\u5929\u5F15"
+  m_Name: Wan
   m_EditorClassIdentifier: 
+  SkillId: 1006
   nodes:
   - rid: 4684207772497084419
   - rid: 4684207772497084431
@@ -73,9 +74,9 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: "CD.\u4E07\u8C61\u5929\u5F15"
-            _hashCode: -531853721
-            _shortName: "\u4E07\u8C61\u5929\u5F15"
+          - _name: CD.Wan
+            _hashCode: 87403585
+            _shortName: Wan
             _ancestorHashCodes: aba22dbc
             _ancestorNames:
             - CD

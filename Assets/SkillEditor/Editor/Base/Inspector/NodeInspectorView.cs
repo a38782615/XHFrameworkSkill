@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor;
+using UnityEditor.UIElements;
 using System.Reflection;
 
 using SkillEditor.Data;
@@ -14,6 +16,8 @@ namespace SkillEditor.Editor
         private SkillGraphView graphView;
         private SkillGraphData graphData;
         private string filePath;
+        private Label titleLabel;
+        private bool isShowingSkillAsset;
 
         public NodeInspectorView()
         {
@@ -25,7 +29,7 @@ namespace SkillEditor.Editor
             style.paddingRight = 10;
             style.flexDirection = FlexDirection.Column;
 
-            var title = new Label("节点属性")
+            titleLabel = new Label("属性")
             {
                 style =
                 {
@@ -34,7 +38,7 @@ namespace SkillEditor.Editor
                     marginBottom = 10
                 }
             };
-            Add(title);
+            Add(titleLabel);
 
             // 创建滚动视图
             scrollView = new ScrollView(ScrollViewMode.Vertical)
@@ -66,22 +70,23 @@ namespace SkillEditor.Editor
             {
                 currentInspector.SetContext(view, data, path);
             }
+
+            // 设置上下文后，如果有数据则显示技能资源信息
+            if (data != null)
+            {
+                ShowSkillAssetInfo();
+            }
         }
 
-        public void UpdateSelection(SkillNodeBase node)
+        /// <summary>
+        /// 显示技能资源（SkillGraphData）的属性信息
+        /// </summary>
+        public void ShowSkillAssetInfo()
         {
-            // 取消订阅旧节点的事件
-            if (currentNode != null)
+            if (graphData == null)
             {
-                currentNode.OnDataChanged -= OnNodeDataChanged;
-            }
-
-            currentNode = node;
-            contentContainer.Clear();
-
-            if (node == null)
-            {
-                var noSelectionLabel = new Label("未选择节点")
+                contentContainer.Clear();
+                var noDataLabel = new Label("未选择技能")
                 {
                     style =
                     {
@@ -90,9 +95,93 @@ namespace SkillEditor.Editor
                         marginTop = 20
                     }
                 };
-                contentContainer.Add(noSelectionLabel);
+                contentContainer.Add(noDataLabel);
                 return;
             }
+
+            // 取消订阅旧节点的事件
+            if (currentNode != null)
+            {
+                currentNode.OnDataChanged -= OnNodeDataChanged;
+                currentNode = null;
+            }
+
+            isShowingSkillAsset = true;
+            titleLabel.text = "技能属性";
+            contentContainer.Clear();
+
+            // 显示文件名
+            var fileName = System.IO.Path.GetFileNameWithoutExtension(filePath);
+            var fileNameLabel = new Label($"文件: {fileName}")
+            {
+                style = { marginBottom = 5 }
+            };
+            contentContainer.Add(fileNameLabel);
+
+            var separator = new VisualElement
+            {
+                style =
+                {
+                    height = 1,
+                    backgroundColor = new Color(0.5f, 0.5f, 0.5f),
+                    marginTop = 5,
+                    marginBottom = 10
+                }
+            };
+            contentContainer.Add(separator);
+
+            // 使用 SerializedObject 绑定 SkillGraphData 的属性
+            var serializedObject = new SerializedObject(graphData);
+
+            // SkillId 字段
+            var skillIdProperty = serializedObject.FindProperty("SkillId");
+            if (skillIdProperty != null)
+            {
+                var skillIdField = new PropertyField(skillIdProperty, "技能ID");
+                skillIdField.Bind(serializedObject);
+                skillIdField.RegisterValueChangeCallback(evt =>
+                {
+                    serializedObject.ApplyModifiedProperties();
+                    EditorUtility.SetDirty(graphData);
+                });
+                contentContainer.Add(skillIdField);
+            }
+
+            // 显示节点数量信息（只读）
+            var nodeCountLabel = new Label($"节点数量: {graphData.nodes?.Count ?? 0}")
+            {
+                style = { marginTop = 10 }
+            };
+            contentContainer.Add(nodeCountLabel);
+
+            var connectionCountLabel = new Label($"连接数量: {graphData.connections?.Count ?? 0}");
+            contentContainer.Add(connectionCountLabel);
+        }
+
+        public void UpdateSelection(SkillNodeBase node)
+        {
+            // 如果传入 null，恢复显示技能资源信息
+            if (node == null)
+            {
+                if (currentNode != null)
+                {
+                    currentNode.OnDataChanged -= OnNodeDataChanged;
+                    currentNode = null;
+                }
+                ShowSkillAssetInfo();
+                return;
+            }
+
+            // 取消订阅旧节点的事件
+            if (currentNode != null)
+            {
+                currentNode.OnDataChanged -= OnNodeDataChanged;
+            }
+
+            currentNode = node;
+            isShowingSkillAsset = false;
+            titleLabel.text = "节点属性";
+            contentContainer.Clear();
 
             // 订阅新节点的数据变化事件
             node.OnDataChanged += OnNodeDataChanged;

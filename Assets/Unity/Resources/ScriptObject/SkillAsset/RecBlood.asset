@@ -191,7 +191,7 @@ MonoBehaviour:
         nodeType: 0
         position: {x: -902.4, y: -1844}
         targetType: 1
-        skillId: 1008
+        skillId: 1007
         assetTags:
           _tags: []
         cancelAbilitiesWithTags:

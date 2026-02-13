@@ -360,7 +360,16 @@ namespace SkillEditor.Editor
 
         private void OnNodeSelected(SkillNodeBase node)
         {
-            inspectorView.UpdateSelection(node);
+            if (node != null)
+            {
+                // 选择了节点，显示节点属性
+                inspectorView.UpdateSelection(node);
+            }
+            else
+            {
+                // 取消选择节点（点击空白区域），恢复显示技能 SO 属性
+                inspectorView.ShowSkillAssetInfo();
+            }
         }
 
         private void LoadGraphFromPath(string path)

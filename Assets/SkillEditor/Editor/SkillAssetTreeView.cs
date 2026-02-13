@@ -72,10 +72,18 @@ namespace SkillEditor.Editor
         private void BuildTreeRecursive(string path, TreeViewItem parent, int depth)
         {
             var directories = Directory.GetDirectories(path)
-                .OrderBy(d => Directory.GetCreationTime(d))
+                .OrderBy(d => Path.GetFileName(d))
                 .ToArray();
             var files = Directory.GetFiles(path, "*.asset")
-                .OrderBy(f => File.GetCreationTime(f))
+                .ToArray();
+
+            // 按 SkillId 排序文件
+            var sortedFiles = files
+                .Select(f => new { 
+                    Path = f, 
+                    SkillId = GetSkillIdFromAsset(f) 
+                })
+                .OrderBy(x => x.SkillId, StringComparer.OrdinalIgnoreCase)
                 .ToArray();
 
             foreach (var dir in directories)
@@ -93,9 +101,9 @@ namespace SkillEditor.Editor
                 BuildTreeRecursive(dir, item, depth + 1);
             }
 
-            foreach (var file in files)
+            foreach (var fileInfo in sortedFiles)
             {
-                var fileName = Path.GetFileNameWithoutExtension(file);
+                var fileName = Path.GetFileNameWithoutExtension(fileInfo.Path);
                 var item = new TreeViewItem
                 {
                     id = currentId++,
@@ -103,9 +111,16 @@ namespace SkillEditor.Editor
                     displayName = fileName,
                     icon = EditorGUIUtility.IconContent("ScriptableObject Icon").image as Texture2D
                 };
-                idToPathMap[item.id] = file.Replace("\\", "/");
+                idToPathMap[item.id] = fileInfo.Path.Replace("\\", "/");
                 parent.AddChild(item);
             }
+        }
+
+        private string GetSkillIdFromAsset(string assetPath)
+        {
+            var normalizedPath = assetPath.Replace("\\", "/");
+            var asset = AssetDatabase.LoadAssetAtPath<SkillGraphData>(normalizedPath);
+            return asset?.SkillId ?? Path.GetFileNameWithoutExtension(assetPath);
         }
 
         private string GetPathFromId(int id)

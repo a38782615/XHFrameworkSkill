@@ -20,7 +20,6 @@ public sealed class TableSkill :  Luban.EditorBeanBase
     {
             Name = "";
             Desc = "";
-            SkillGraphDataPath = "";
             IconPath = "";
     }
 
@@ -51,14 +50,6 @@ public sealed class TableSkill :  Luban.EditorBeanBase
         }
         
         { 
-            var _fieldJson = _json["SkillGraphDataPath"];
-            if (_fieldJson != null)
-            {
-                if(!_fieldJson.IsString) { throw new SerializationException(); }  SkillGraphDataPath = _fieldJson;
-            }
-        }
-        
-        { 
             var _fieldJson = _json["IconPath"];
             if (_fieldJson != null)
             {
@@ -85,11 +76,6 @@ public sealed class TableSkill :  Luban.EditorBeanBase
         }
         {
 
-            if (SkillGraphDataPath == null) { throw new System.ArgumentNullException(); }
-            _json["SkillGraphDataPath"] = new JSONString(SkillGraphDataPath);
-        }
-        {
-
             if (IconPath == null) { throw new System.ArgumentNullException(); }
             _json["IconPath"] = new JSONString(IconPath);
         }
@@ -112,11 +98,6 @@ public sealed class TableSkill :  Luban.EditorBeanBase
     public string Name;
 
     public string Desc;
-
-    /// <summary>
-    /// 资源名称
-    /// </summary>
-    public string SkillGraphDataPath;
 
     /// <summary>
     /// 图标
