@@ -71,6 +71,7 @@ namespace SkillEditor.Data
 
         /// <summary>
         /// CD.SpeedUp
+        /// CD.流血
         /// </summary>
         public static GameplayTag CD_SpeedUp { get; } = new GameplayTag("CD.SpeedUp");
 
@@ -123,6 +124,7 @@ namespace SkillEditor.Data
             ["Buff.DeBuff.Dot"] = Buff_DeBuff_Dot,
             ["Buff.DeBuff.Stun"] = Buff_DeBuff_Stun,
             ["CD"] = CD,
+<<<<<<< HEAD
             ["CD.BeRecBlood"] = CD_BeRecBlood,
             ["CD.Blood"] = CD_Blood,
             ["CD.FireCircle"] = CD_FireCircle,
@@ -134,6 +136,18 @@ namespace SkillEditor.Data
             ["CD.ThreeFire"] = CD_ThreeFire,
             ["CD.Wan"] = CD_Wan,
             ["CD.Wind"] = CD_Wind,
+=======
+            ["CD.万象天引"] = CD_万象天引,
+            ["CD.三火球"] = CD_三火球,
+            ["CD.回血"] = CD_回血,
+            ["CD.急速"] = CD_急速,
+            ["CD.旋风斩"] = CD_旋风斩,
+            ["CD.流血"] = CD_流血,
+            ["CD.火球术"] = CD_火球术,
+            ["CD.神罗天正"] = CD_神罗天正,
+            ["CD.被动回血"] = CD_被动回血,
+            ["CD.践踏"] = CD_践踏,
+>>>>>>> upstream/main
             ["unitType"] = unitType,
             ["unitType.hero"] = unitType_hero,
             ["unitType.monster"] = unitType_monster,
