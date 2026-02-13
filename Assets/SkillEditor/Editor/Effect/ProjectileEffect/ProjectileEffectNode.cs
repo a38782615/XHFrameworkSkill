@@ -14,6 +14,7 @@ namespace SkillEditor.Editor
         // 输出端口
         private Port onHitPort;
         private Port onReachTargetPort;
+        private Port onBouncePort;
 
         public ProjectileEffectNode(Vector2 position) : base(NodeType.ProjectileEffect, position) { }
 
@@ -26,6 +27,7 @@ namespace SkillEditor.Editor
             // 只创建输出端口
             onHitPort = CreateOutputPort("碰撞时");
             onReachTargetPort = CreateOutputPort("到达目标位置");
+            onBouncePort = CreateOutputPort("反弹时");
         }
 
         protected override void SyncEffectContentFromData()

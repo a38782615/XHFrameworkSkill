@@ -122,7 +122,14 @@ namespace SkillEditor.Runtime
                 SkillId = SkillId,
                 NodeGuid = NodeGuid,
                 Context = Context,
-                SourceASC = Source
+                SourceASC = Source,
+                // 反弹设置
+                IsBouncing = nodeData.isBouncing,
+                BounceTargetMode = nodeData.bounceTargetMode,
+                MaxBounceCount = nodeData.maxBounceCount,
+                BounceSearchRadius = nodeData.bounceSearchRadius,
+                CanBounceToSameTarget = nodeData.canBounceToSameTarget,
+                BounceAngleOffset = nodeData.bounceAngleOffset
             });
 
             // 保存引用
@@ -131,6 +138,7 @@ namespace SkillEditor.Runtime
             // 注册事件
             controller.OnHit += OnProjectileHit;
             controller.OnReachTarget += OnProjectileReachTarget;
+            controller.OnBounce += OnProjectileBounce;
             controller.OnDestroy += OnProjectileDestroy;
         }
 
@@ -166,6 +174,22 @@ namespace SkillEditor.Runtime
         }
 
         /// <summary>
+        /// 投射物反弹回调
+        /// </summary>
+        private void OnProjectileBounce(AbilitySystemComponent nextTarget, Vector2 bouncePosition)
+        {
+            if (nextTarget == null) return;
+
+            // 创建带有反弹目标的上下文
+            var bounceContext = Context.CreateWithParentInput(nextTarget);
+            bounceContext.SetCustomData("BouncePosition", bouncePosition);
+            bounceContext.ProjectileObject = _projectileObject;
+
+            // 执行反弹时端口
+            SpecExecutor.ExecuteConnectedNodes(SkillId, NodeGuid, "反弹时", bounceContext);
+        }
+
+        /// <summary>
         /// 投射物销毁回调
         /// </summary>
         private void OnProjectileDestroy()
@@ -188,6 +212,7 @@ namespace SkillEditor.Runtime
                 // 先取消事件订阅，避免循环调用
                 _projectileController.OnHit -= OnProjectileHit;
                 _projectileController.OnReachTarget -= OnProjectileReachTarget;
+                _projectileController.OnBounce -= OnProjectileBounce;
                 _projectileController.OnDestroy -= OnProjectileDestroy;
 
                 // 销毁投射物
@@ -238,5 +263,13 @@ namespace SkillEditor.Runtime
         public string NodeGuid;
         public SpecExecutionContext Context;
         public AbilitySystemComponent SourceASC;
+        
+        // 反弹设置
+        public bool IsBouncing;
+        public BounceTargetMode BounceTargetMode;
+        public int MaxBounceCount;
+        public float BounceSearchRadius;
+        public bool CanBounceToSameTarget;
+        public float BounceAngleOffset;
     }
 }

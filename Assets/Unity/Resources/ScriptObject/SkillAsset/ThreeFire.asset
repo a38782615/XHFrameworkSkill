@@ -331,6 +331,10 @@ MonoBehaviour:
           _tags: []
         collisionExcludeTags:
           _tags: []
+        isBouncing: 0
+        maxBounceCount: 3
+        bounceSearchRadius: 10
+        canBounceToSameTarget: 0
     - rid: 4684207789798588431
       type: {class: ProjectileEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
@@ -382,6 +386,10 @@ MonoBehaviour:
           _tags: []
         collisionExcludeTags:
           _tags: []
+        isBouncing: 0
+        maxBounceCount: 3
+        bounceSearchRadius: 10
+        canBounceToSameTarget: 0
     - rid: 4684207789798588432
       type: {class: ProjectileEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
@@ -433,3 +441,7 @@ MonoBehaviour:
           _tags: []
         collisionExcludeTags:
           _tags: []
+        isBouncing: 0
+        maxBounceCount: 3
+        bounceSearchRadius: 10
+        canBounceToSameTarget: 0

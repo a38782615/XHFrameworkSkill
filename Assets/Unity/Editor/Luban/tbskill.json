@@ -51,7 +51,13 @@
     "Id": 1009,
     "Name": "SpeedUp",
     "Desc": "急速",
-    "IconPath": "Sprites/SkillIcon/01209"
+    "IconPath": "Sprites/SkillIcon/01109"
+  },
+  {
+    "Id": 1010,
+    "Name": "FireCircle2",
+    "Desc": "火球术",
+    "IconPath": "Sprites/SkillIcon/01110"
   },
   {
     "Id": 2001,

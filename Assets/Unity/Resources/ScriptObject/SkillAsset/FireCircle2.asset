@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e2abec0374da61478151f6b840fbb7a, type: 3}
-  m_Name: FireCircle
+  m_Name: FireCircle2
   m_EditorClassIdentifier: 
-  SkillId: 7001
+  SkillId: 1010
   nodes:
   - rid: 661027767992713496
   - rid: 661027767992713497
   - rid: 661027767992713498
   - rid: 661027767992713501
   - rid: 661027767992713502
-  - rid: 661027767992713503
   - rid: 661027767992713499
   - rid: 661027767992713500
+  - rid: 661027767992713503
   connections:
   - outputNodeGuid: 356907e0-1488-4128-bfcc-7ff73cfc3330
     outputPortName: "\u52A8\u753B"
@@ -80,7 +80,7 @@ MonoBehaviour:
         - attrType: 100
           operation: 0
           magnitudeSourceType: 0
-          fixedValue: 10
+          fixedValue: -10
           formula: 
           mmcType: 0
           setByCallerKey: 
@@ -212,9 +212,9 @@ MonoBehaviour:
       data:
         guid: 356907e0-1488-4128-bfcc-7ff73cfc3330
         nodeType: 0
-        position: {x: -880.6666, y: -1851.3334}
+        position: {x: -878.6666, y: -1851.3334}
         targetType: 1
-        skillId: 7001
+        skillId: 1010
         assetTags:
           _tags: []
         cancelAbilitiesWithTags:
@@ -227,21 +227,14 @@ MonoBehaviour:
           _tags: []
         activationBlockedTags:
           _tags:
-          - _name: CD.Wind
-            _hashCode: 1982736573
-            _shortName: Wind
+          - _name: CD.FireCircle
+            _hashCode: 522143731
+            _shortName: FireCircle
             _ancestorHashCodes: aba22dbc
             _ancestorNames:
             - CD
         ongoingBlockedTags:
-          _tags:
-          - _name: Buff.DeBuff.Stun
-            _hashCode: 1791562953
-            _shortName: Stun
-            _ancestorHashCodes: 6f57da37077b2413
-            _ancestorNames:
-            - Buff
-            - Buff.DeBuff
+          _tags: []
         eventOutputPorts: []
     - rid: 661027767992713501
       type: {class: EndAbilityTaskNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
@@ -258,10 +251,10 @@ MonoBehaviour:
         nodeType: 20
         position: {x: -491.3333, y: -2478.6665}
         targetType: 1
-        skeletonDataAsset: {fileID: 11400000, guid: 11fcc4fd3f661ba4eb306f484db9605f,
+        skeletonDataAsset: {fileID: 11400000, guid: 3754b23f7ac951e42ab7bce09051b229,
           type: 2}
-        animationName: Attack
-        animationDuration: 24
+        animationName: Attack_01
+        animationDuration: 18
         isAnimationLooping: 0
         timeEffects:
         - triggerTime: 11
@@ -274,7 +267,7 @@ MonoBehaviour:
       data:
         guid: 90bacd9f-d882-4bba-aaa8-41ed993ac3ff
         nodeType: 8
-        position: {x: -401.3333, y: -1826.6667}
+        position: {x: -400.66666, y: -1836.6667}
         targetType: 2
         assetTags:
           _tags: []
@@ -320,7 +313,9 @@ MonoBehaviour:
           _tags: []
         collisionExcludeTags:
           _tags: []
-        isBouncing: 0
-        maxBounceCount: 3
+        isBouncing: 1
+        bounceTargetMode: 1
+        maxBounceCount: 2
         bounceSearchRadius: 10
         canBounceToSameTarget: 0
+        bounceAngleOffset: 50

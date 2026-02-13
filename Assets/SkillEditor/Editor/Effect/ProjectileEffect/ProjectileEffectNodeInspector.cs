@@ -237,6 +237,91 @@ namespace SkillEditor.Editor
                 }));
 
                 container.Add(collisionTagSection);
+
+                // ============ 反弹设置 ============
+                var bounceSection = CreateCollapsibleSection("反弹设置", out var bounceContent, true);
+
+                var isBouncingToggle = new Toggle("启用反弹") { value = data.isBouncing };
+                bounceContent.Add(isBouncingToggle);
+
+                // 反弹参数容器
+                var bounceParamsContainer = new VisualElement();
+                bounceContent.Add(bounceParamsContainer);
+
+                void UpdateBounceParamsVisibility(bool isBouncing, BounceTargetMode mode)
+                {
+                    bounceParamsContainer.Clear();
+                    if (isBouncing)
+                    {
+                        // 反弹目标模式
+                        var bounceModeField = new EnumField("反弹目标模式", data.bounceTargetMode);
+                        ApplyEnumFieldStyle(bounceModeField);
+                        bounceParamsContainer.Add(bounceModeField);
+
+                        // 最大反弹次数（通用）
+                        bounceParamsContainer.Add(CreateIntField("最大反弹次数", data.maxBounceCount, value =>
+                        {
+                            data.maxBounceCount = value;
+                            projectileNode.SyncUIFromData();
+                        }));
+
+                        // 模式相关参数容器
+                        var modeParamsContainer = new VisualElement();
+                        bounceParamsContainer.Add(modeParamsContainer);
+
+                        void UpdateModeParams(BounceTargetMode currentMode)
+                        {
+                            modeParamsContainer.Clear();
+                            if (currentMode == BounceTargetMode.SearchNearest)
+                            {
+                                // 搜索模式参数
+                                modeParamsContainer.Add(CreateFloatField("反弹搜索半径", data.bounceSearchRadius, value =>
+                                {
+                                    data.bounceSearchRadius = value;
+                                    projectileNode.SyncUIFromData();
+                                }));
+
+                                var canBounceToSameToggle = new Toggle("可反弹到已命中目标") { value = data.canBounceToSameTarget };
+                                canBounceToSameToggle.style.marginTop = 4;
+                                canBounceToSameToggle.RegisterValueChangedCallback(evt =>
+                                {
+                                    data.canBounceToSameTarget = evt.newValue;
+                                    projectileNode.SyncUIFromData();
+                                });
+                                modeParamsContainer.Add(canBounceToSameToggle);
+                            }
+                            else
+                            {
+                                // 反向偏移角度模式参数
+                                modeParamsContainer.Add(CreateFloatField("反弹偏移角度", data.bounceAngleOffset, value =>
+                                {
+                                    data.bounceAngleOffset = value;
+                                    projectileNode.SyncUIFromData();
+                                }));
+                            }
+                        }
+
+                        bounceModeField.RegisterValueChangedCallback(evt =>
+                        {
+                            data.bounceTargetMode = (BounceTargetMode)evt.newValue;
+                            UpdateModeParams((BounceTargetMode)evt.newValue);
+                            projectileNode.SyncUIFromData();
+                        });
+
+                        UpdateModeParams(mode);
+                    }
+                }
+
+                isBouncingToggle.RegisterValueChangedCallback(evt =>
+                {
+                    data.isBouncing = evt.newValue;
+                    UpdateBounceParamsVisibility(evt.newValue, data.bounceTargetMode);
+                    projectileNode.SyncUIFromData();
+                });
+
+                UpdateBounceParamsVisibility(data.isBouncing, data.bounceTargetMode);
+
+                container.Add(bounceSection);
             }
         }
     }

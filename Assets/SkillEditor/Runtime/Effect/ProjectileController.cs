@@ -14,6 +14,7 @@ namespace SkillEditor.Runtime
         // ============ 事件 ============
         public event Action<AbilitySystemComponent, Vector2> OnHit;
         public event Action<Vector2> OnReachTarget;
+        public event Action<AbilitySystemComponent, Vector2> OnBounce;
         public event Action OnDestroy;
 
         // ============ 配置数据 ============
@@ -26,6 +27,7 @@ namespace SkillEditor.Runtime
         private float _traveledDistance;
         private float _totalDistance;
         private int _hitCount;
+        private int _bounceCount;
         private HashSet<AbilitySystemComponent> _hitTargets = new HashSet<AbilitySystemComponent>();
         private bool _reachedTarget = false;
 
@@ -50,6 +52,7 @@ namespace SkillEditor.Runtime
             _traveledDistance = 0f;
             _flightProgress = 0f;
             _hitCount = 0;
+            _bounceCount = 0;
             _hitTargets.Clear();
             _reachedTarget = false;
 
@@ -222,16 +225,48 @@ namespace SkillEditor.Runtime
                 // 触发命中事件
                 OnHit?.Invoke(asc, _currentPosition);
 
-                // 检查是否需要销毁
+                // 检查是否需要销毁或反弹
                 if (!_data.IsPiercing)
                 {
-                    // 不穿透，直接销毁
-                    DestroyProjectile();
-                    return;
+                    // 不穿透模式
+                    if (_data.IsBouncing)
+                    {
+                        // 启用反弹：尝试反弹到下一个目标
+                        if (_bounceCount < _data.MaxBounceCount)
+                        {
+                            if (TryBounceToNextTarget(asc))
+                            {
+                                return; // 成功反弹，继续飞行
+                            }
+                            // 找不到反弹目标，继续沿当前方向飞行
+                            return;
+                        }
+                        // 达到最大反弹次数，销毁
+                        DestroyProjectile();
+                        return;
+                    }
+                    else
+                    {
+                        // 未启用反弹：直接销毁
+                        DestroyProjectile();
+                        return;
+                    }
                 }
                 else if (_hitCount >= _data.MaxPierceCount)
                 {
-                    // 达到最大穿透数，销毁
+                    // 达到最大穿透数，检查是否可以反弹
+                    if (_data.IsBouncing && _bounceCount < _data.MaxBounceCount)
+                    {
+                        if (TryBounceToNextTarget(asc))
+                        {
+                            _hitCount = 0; // 反弹后重置穿透计数
+                            return;
+                        }
+                        // 找不到反弹目标，继续沿当前方向飞行
+                        _hitCount = 0;
+                        return;
+                    }
+                    // 无法反弹，销毁
                     DestroyProjectile();
                     return;
                 }
@@ -331,6 +366,123 @@ namespace SkillEditor.Runtime
         }
 
         /// <summary>
+        /// 尝试反弹到下一个目标
+        /// </summary>
+        private bool TryBounceToNextTarget(AbilitySystemComponent currentTarget)
+        {
+            // 记录反弹
+            _bounceCount++;
+
+            if (_data.BounceTargetMode == BounceTargetMode.SearchNearest)
+            {
+                // 搜索最近目标模式
+                var nextTarget = FindNextBounceTarget(currentTarget);
+                if (nextTarget == null)
+                {
+                    _bounceCount--; // 回退计数
+                    return false;
+                }
+
+                // 如果不允许反弹到相同目标，将当前目标加入已命中列表
+                if (!_data.CanBounceToSameTarget)
+                {
+                    _hitTargets.Add(currentTarget);
+                }
+
+                // 更新目标
+                _data.TargetUnit = nextTarget;
+                _startPosition = _currentPosition;
+                _endPosition = GetTargetUnitPosition();
+                _totalDistance = Vector2.Distance(_startPosition, _endPosition);
+                _traveledDistance = 0f;
+                _flightProgress = 0f;
+                _currentDirection = (_endPosition - _startPosition).normalized;
+
+                // 触发反弹事件
+                OnBounce?.Invoke(nextTarget, _currentPosition);
+            }
+            else
+            {
+                // 反向偏移角度模式
+                // 计算反向方向并应用偏移角度
+                Vector2 reverseDirection = -_currentDirection;
+                if (Mathf.Abs(_data.BounceAngleOffset) > 0.01f)
+                {
+                    reverseDirection = RotateVector2(reverseDirection, _data.BounceAngleOffset);
+                }
+
+                // 如果不允许反弹到相同目标，将当前目标加入已命中列表
+                if (!_data.CanBounceToSameTarget && currentTarget != null)
+                {
+                    _hitTargets.Add(currentTarget);
+                }
+
+                // 更新方向和位置
+                _currentDirection = reverseDirection;
+                _startPosition = _currentPosition;
+                _data.TargetUnit = null; // 清除目标单位，改为点模式飞行
+                _traveledDistance = 0f;
+                _flightProgress = 0f;
+
+                // 触发反弹事件（无特定目标）
+                OnBounce?.Invoke(null, _currentPosition);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 旋转2D向量
+        /// </summary>
+        private Vector2 RotateVector2(Vector2 v, float degrees)
+        {
+            float radians = degrees * Mathf.Deg2Rad;
+            float cos = Mathf.Cos(radians);
+            float sin = Mathf.Sin(radians);
+            return new Vector2(v.x * cos - v.y * sin, v.x * sin + v.y * cos);
+        }
+
+        /// <summary>
+        /// 搜索下一个反弹目标
+        /// </summary>
+        private AbilitySystemComponent FindNextBounceTarget(AbilitySystemComponent currentTarget)
+        {
+            var colliders = Physics2D.OverlapCircleAll(_currentPosition, _data.BounceSearchRadius);
+            
+            AbilitySystemComponent nearestTarget = null;
+            float nearestDistance = float.MaxValue;
+
+            foreach (var collider in colliders)
+            {
+                var asc = GetASCFromCollider(collider);
+                if (asc == null) continue;
+
+                // 跳过发射者
+                if (asc == _data.SourceASC) continue;
+
+                // 跳过当前目标
+                if (asc == currentTarget) continue;
+
+                // 如果不允许反弹到相同目标，跳过已命中的目标
+                if (!_data.CanBounceToSameTarget && _hitTargets.Contains(asc))
+                    continue;
+
+                // 检查标签
+                if (!IsValidTarget(asc)) continue;
+
+                // 计算距离，选择最近的目标
+                float distance = Vector2.Distance(_currentPosition, (Vector2)asc.Owner.transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearestTarget = asc;
+                }
+            }
+
+            return nearestTarget;
+        }
+
+        /// <summary>
         /// 获取垂直向量（用于曲线计算）
         /// 正数向上弯曲，负数向下弯曲
         /// </summary>
@@ -363,6 +515,7 @@ namespace SkillEditor.Runtime
             // 清理事件
             OnHit = null;
             OnReachTarget = null;
+            OnBounce = null;
             OnDestroy = null;
 
             Destroy(gameObject);

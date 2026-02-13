@@ -15,6 +15,17 @@ namespace SkillEditor.Data
     }
 
     /// <summary>
+    /// 反弹目标模式
+    /// </summary>
+    public enum BounceTargetMode
+    {
+        [InspectorName("搜索最近目标")]
+        SearchNearest,
+        [InspectorName("反向偏移角度")]
+        ReverseAngle
+    }
+
+    /// <summary>
     /// 投射物效果节点数据
     /// </summary>
     [Serializable]
@@ -113,5 +124,37 @@ namespace SkillEditor.Data
         /// 碰撞排除标签
         /// </summary>
         public GameplayTagSet collisionExcludeTags;
+
+        // ============ 反弹设置 ============
+
+        /// <summary>
+        /// 是否启用反弹
+        /// </summary>
+        public bool isBouncing = false;
+
+        /// <summary>
+        /// 反弹目标模式
+        /// </summary>
+        public BounceTargetMode bounceTargetMode = BounceTargetMode.SearchNearest;
+
+        /// <summary>
+        /// 最大反弹次数
+        /// </summary>
+        public int maxBounceCount = 3;
+
+        /// <summary>
+        /// 反弹搜索半径（搜索模式）
+        /// </summary>
+        public float bounceSearchRadius = 10f;
+
+        /// <summary>
+        /// 是否可以反弹到已命中的目标（搜索模式）
+        /// </summary>
+        public bool canBounceToSameTarget = false;
+
+        /// <summary>
+        /// 反弹偏移角度（反向偏移模式，相对于反向的偏移）
+        /// </summary>
+        public float bounceAngleOffset = 0f;
     }
 }
