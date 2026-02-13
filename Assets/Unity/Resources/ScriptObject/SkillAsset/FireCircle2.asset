@@ -314,7 +314,7 @@ MonoBehaviour:
         collisionExcludeTags:
           _tags: []
         isBouncing: 1
-        bounceTargetMode: 1
+        bounceTargetMode: 0
         maxBounceCount: 2
         bounceSearchRadius: 10
         canBounceToSameTarget: 0

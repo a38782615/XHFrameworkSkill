@@ -7,7 +7,7 @@ set GEN_CLIENT=../Luban/Luban.dll
       -d bin ^
       --conf ./luban.conf ^
       -x outputDataDir=%WORKSPACE%\Assets\Unity\Resources\Luban ^
-      -x outputCodeDir=%WORKSPACE%\Assets\SkillEditor\Runtime\Demo\Luban\DataTable ^
+      -x outputCodeDir=%WORKSPACE%\Assets\SkillEditor\Runtime\Luban\DataTable ^
       -x tableImporter.valueTypeNameFormat=Table{0}
 
   dotnet %GEN_CLIENT% ^
@@ -16,6 +16,6 @@ set GEN_CLIENT=../Luban/Luban.dll
       -d json ^
       --conf ./luban.conf ^
       -x outputDataDir=%WORKSPACE%\Assets\Unity\Editor\Luban ^
-      -x outputCodeDir=%WORKSPACE%\Assets\SkillEditor/Editor\Demo\Luban\DataTable ^
+      -x outputCodeDir=%WORKSPACE%\Assets\SkillEditor\Editor\Luban\DataTable ^
       -x tableImporter.valueTypeNameFormat=Table{0}
   pause                              
