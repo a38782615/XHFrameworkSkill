@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e2abec0374da61478151f6b840fbb7a, type: 3}
-  m_Name: ThreeFire
+  m_Name: "\u4E09\u706B\u7403"
   m_EditorClassIdentifier: 
-  SkillId: 1008
   nodes:
-  - rid: 661027767992713519
-  - rid: 661027767992713520
-  - rid: 661027767992713521
-  - rid: 661027767992713522
-  - rid: 661027767992713523
-  - rid: 661027767992713524
-  - rid: 661027767992713525
-  - rid: 661027767992713526
-  - rid: 661027767992713527
-  - rid: 661027767992713528
+  - rid: 4684207772497084430
+  - rid: 4684207772497084419
+  - rid: 4684207772497084417
+  - rid: 4684207772497084420
+  - rid: 4684207772497084416
+  - rid: 4684207772497084422
+  - rid: 4684207772497084423
+  - rid: 4684207789798588430
+  - rid: 4684207789798588432
+  - rid: 4684207789798588431
   connections:
   - outputNodeGuid: 356907e0-1488-4128-bfcc-7ff73cfc3330
     outputPortName: "\u52A8\u753B"
@@ -72,20 +71,59 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 661027767992713519
-      type: {class: EndAbilityTaskNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+    - rid: 4684207772497084416
+      type: {class: AbilityNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
-        guid: 2cfdacd2-0186-49dd-b177-4eb8c0ad87bd
-        nodeType: 7
-        position: {x: 689.3334, y: -1860.6667}
+        guid: 356907e0-1488-4128-bfcc-7ff73cfc3330
+        nodeType: 0
+        position: {x: -878.4, y: -1853.6}
         targetType: 1
-        endType: 0
-    - rid: 661027767992713520
+        skillId: 1008
+        assetTags:
+          _tags: []
+        cancelAbilitiesWithTags:
+          _tags: []
+        blockAbilitiesWithTags:
+          _tags: []
+        activationOwnedTags:
+          _tags: []
+        activationRequiredTags:
+          _tags: []
+        activationBlockedTags:
+          _tags:
+          - _name: "CD.\u4E09\u706B\u7403"
+            _hashCode: -1656226246
+            _shortName: "\u4E09\u706B\u7403"
+            _ancestorHashCodes: aba22dbc
+            _ancestorNames:
+            - CD
+        ongoingBlockedTags:
+          _tags: []
+        eventOutputPorts: []
+    - rid: 4684207772497084417
+      type: {class: AnimationNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 432ff1e3-b18d-476d-af80-d39ddc07402a
+        nodeType: 20
+        position: {x: -452, y: -2406.4}
+        targetType: 1
+        skeletonDataAsset: {fileID: 11400000, guid: 3754b23f7ac951e42ab7bce09051b229,
+          type: 2}
+        animationName: Attack_01
+        animationDuration: 18
+        isAnimationLooping: 0
+        timeEffects:
+        - triggerTime: 7
+          portId: de0ba361-3aba-4ef0-bb07-9b418fcae591
+        - triggerTime: 18
+          portId: 84e238a8-5baf-470e-829f-186695064945
+        timeCues: []
+    - rid: 4684207772497084419
       type: {class: CostEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: 9d6f459d-b588-4b64-843b-1b71e8f299ae
         nodeType: 3
-        position: {x: -1186.6666, y: -2019.3334}
+        position: {x: -1186.4, y: -2019.2}
         targetType: 1
         assetTags:
           _tags: []
@@ -123,36 +161,18 @@ MonoBehaviour:
         ongoingRequiredTags:
           _tags: []
         cancelOnAbilityEnd: 1
-    - rid: 661027767992713521
-      type: {class: AnimationNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
-      data:
-        guid: 432ff1e3-b18d-476d-af80-d39ddc07402a
-        nodeType: 20
-        position: {x: -452, y: -2406.6665}
-        targetType: 1
-        skeletonDataAsset: {fileID: 11400000, guid: 4fa037b3a2d54ba46a5bbed3faf26323,
-          type: 2}
-        animationName: Attack_01
-        animationDuration: 18
-        isAnimationLooping: 0
-        timeEffects:
-        - triggerTime: 7
-          portId: de0ba361-3aba-4ef0-bb07-9b418fcae591
-        - triggerTime: 18
-          portId: 84e238a8-5baf-470e-829f-186695064945
-        timeCues: []
-    - rid: 661027767992713522
+    - rid: 4684207772497084420
       type: {class: CooldownEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: c28fb88d-51b1-47b2-be59-859e0ac638e3
         nodeType: 10
-        position: {x: -1186.6666, y: -1747.3334}
+        position: {x: -1186.4, y: -1747.2}
         targetType: 1
         assetTags:
           _tags: []
         grantedTags:
           _tags:
-          - _name: CD.ThreeFire
+          - _name: "CD.\u4E09\u706B\u7403"
             _hashCode: -1656226246
             _shortName: "\u4E09\u706B\u7403"
             _ancestorHashCodes: aba22dbc
@@ -182,41 +202,12 @@ MonoBehaviour:
         cooldownType: 0
         maxCharges: 2
         chargeTime: 10
-    - rid: 661027767992713523
-      type: {class: AbilityNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
-      data:
-        guid: 356907e0-1488-4128-bfcc-7ff73cfc3330
-        nodeType: 0
-        position: {x: -878.6666, y: -1853.3334}
-        targetType: 1
-        skillId: 1010
-        assetTags:
-          _tags: []
-        cancelAbilitiesWithTags:
-          _tags: []
-        blockAbilitiesWithTags:
-          _tags: []
-        activationOwnedTags:
-          _tags: []
-        activationRequiredTags:
-          _tags: []
-        activationBlockedTags:
-          _tags:
-          - _name: CD.ThreeFire
-            _hashCode: -1656226246
-            _shortName: "\u4E09\u706B\u7403"
-            _ancestorHashCodes: aba22dbc
-            _ancestorNames:
-            - CD
-        ongoingBlockedTags:
-          _tags: []
-        eventOutputPorts: []
-    - rid: 661027767992713524
+    - rid: 4684207772497084422
       type: {class: FloatingTextCueNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: c353e286-8ef0-460a-b917-887f2aeb390a
         nodeType: 14
-        position: {x: 839.3334, y: -1583.3334}
+        position: {x: 839.19995, y: -1583.2}
         targetType: 1
         requiredTags:
           _tags: []
@@ -236,12 +227,12 @@ MonoBehaviour:
         duration: 1.5
         offset: {x: 0, y: 0}
         moveDirection: {x: 0, y: 1}
-    - rid: 661027767992713525
+    - rid: 4684207772497084423
       type: {class: DamageEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: f8947676-1084-4228-b991-1509cc7fe851
         nodeType: 1
-        position: {x: 614.6666, y: -1583.3334}
+        position: {x: 614.4, y: -1583.2}
         targetType: 0
         assetTags:
           _tags: []
@@ -280,12 +271,20 @@ MonoBehaviour:
         damageMMCUseSnapshot: 1
         damageMultiplyByStackCount: 0
         damageCalculationType: 0
-    - rid: 661027767992713526
+    - rid: 4684207772497084430
+      type: {class: EndAbilityTaskNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 2cfdacd2-0186-49dd-b177-4eb8c0ad87bd
+        nodeType: 7
+        position: {x: 689.6, y: -1860.8}
+        targetType: 1
+        endType: 0
+    - rid: 4684207789798588430
       type: {class: ProjectileEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: ce857360-de7e-4457-b348-9c124ce98879
         nodeType: 8
-        position: {x: 202.66669, y: -1649.3334}
+        position: {x: 202.4, y: -1649.6}
         targetType: 2
         assetTags:
           _tags: []
@@ -331,63 +330,12 @@ MonoBehaviour:
           _tags: []
         collisionExcludeTags:
           _tags: []
-    - rid: 661027767992713527
-      type: {class: ProjectileEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
-      data:
-        guid: 9a695e91-e218-425e-82ed-1e157bf1b014
-        nodeType: 8
-        position: {x: 184.66669, y: -1475.3334}
-        targetType: 2
-        assetTags:
-          _tags: []
-        grantedTags:
-          _tags: []
-        applicationRequiredTags:
-          _tags: []
-        applicationImmunityTags:
-          _tags: []
-        removeGameEffectsWithTags:
-          _tags: []
-        durationType: 2
-        duration: 0
-        isPeriodic: 0
-        period: 1
-        executeOnApplication: 0
-        attributeModifiers: []
-        stackType: 0
-        stackLimit: 0
-        stackDurationRefreshPolicy: 0
-        stackPeriodResetPolicy: 0
-        stackExpirationPolicy: 0
-        stackOverflowPolicy: 0
-        ongoingRequiredTags:
-          _tags: []
-        cancelOnAbilityEnd: 0
-        launchPositionSource: 0
-        launchBindingName: center
-        targetPositionSource: 2
-        targetBindingName: center
-        projectileTargetType: 0
-        flyOver: 1
-        offsetAngle: 0
-        curveHeight: 0
-        projectilePrefab: {fileID: 7076030624160698024, guid: 1eb2b694ad798b44eb5697467b59523d,
-          type: 3}
-        speed: 10
-        maxDistance: 10
-        collisionRadius: 0.5
-        isPiercing: 0
-        maxPierceCount: 1
-        collisionTargetTags:
-          _tags: []
-        collisionExcludeTags:
-          _tags: []
-    - rid: 661027767992713528
+    - rid: 4684207789798588431
       type: {class: ProjectileEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: d897a922-5756-42cf-ac65-90a48c1e5a17
         nodeType: 8
-        position: {x: 173.33334, y: -1327.3334}
+        position: {x: 173.6, y: -1327.2}
         targetType: 2
         assetTags:
           _tags: []
@@ -421,6 +369,57 @@ MonoBehaviour:
         projectileTargetType: 0
         flyOver: 1
         offsetAngle: -30
+        curveHeight: 0
+        projectilePrefab: {fileID: 7076030624160698024, guid: 1eb2b694ad798b44eb5697467b59523d,
+          type: 3}
+        speed: 10
+        maxDistance: 10
+        collisionRadius: 0.5
+        isPiercing: 0
+        maxPierceCount: 1
+        collisionTargetTags:
+          _tags: []
+        collisionExcludeTags:
+          _tags: []
+    - rid: 4684207789798588432
+      type: {class: ProjectileEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 9a695e91-e218-425e-82ed-1e157bf1b014
+        nodeType: 8
+        position: {x: 184.79999, y: -1475.2}
+        targetType: 2
+        assetTags:
+          _tags: []
+        grantedTags:
+          _tags: []
+        applicationRequiredTags:
+          _tags: []
+        applicationImmunityTags:
+          _tags: []
+        removeGameEffectsWithTags:
+          _tags: []
+        durationType: 2
+        duration: 0
+        isPeriodic: 0
+        period: 1
+        executeOnApplication: 0
+        attributeModifiers: []
+        stackType: 0
+        stackLimit: 0
+        stackDurationRefreshPolicy: 0
+        stackPeriodResetPolicy: 0
+        stackExpirationPolicy: 0
+        stackOverflowPolicy: 0
+        ongoingRequiredTags:
+          _tags: []
+        cancelOnAbilityEnd: 0
+        launchPositionSource: 0
+        launchBindingName: center
+        targetPositionSource: 2
+        targetBindingName: center
+        projectileTargetType: 0
+        flyOver: 1
+        offsetAngle: 0
         curveHeight: 0
         projectilePrefab: {fileID: 7076030624160698024, guid: 1eb2b694ad798b44eb5697467b59523d,
           type: 3}

@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e2abec0374da61478151f6b840fbb7a, type: 3}
-  m_Name: Blood
+  m_Name: "\u6D41\u8840"
   m_EditorClassIdentifier: 
-  SkillId: 1002
   nodes:
-  - rid: 661027767992713461
-  - rid: 661027767992713462
-  - rid: 661027767992713463
-  - rid: 661027767992713464
-  - rid: 661027767992713465
-  - rid: 661027767992713466
-  - rid: 661027767992713467
-  - rid: 661027767992713468
-  - rid: 661027767992713469
-  - rid: 661027767992713470
+  - rid: 4684207772497084418
+  - rid: 4684207772497084419
+  - rid: 4684207772497084420
+  - rid: 4684207772497084422
+  - rid: 4684207772497084416
+  - rid: 4684207772497084429
+  - rid: 4684207772497084423
+  - rid: 4684207772497084424
+  - rid: 4684207772497084421
+  - rid: 4684207772497084417
   connections:
   - outputNodeGuid: 432ff1e3-b18d-476d-af80-d39ddc07402a
     outputPortName: 8dea1941-c520-4f9a-aee0-40932c8542ef
@@ -64,14 +63,43 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 661027767992713461
+    - rid: 4684207772497084416
+      type: {class: AbilityNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: 356907e0-1488-4128-bfcc-7ff73cfc3330
+        nodeType: 0
+        position: {x: -878.4, y: -1853.6}
+        targetType: 1
+        skillId: 1002
+        assetTags:
+          _tags: []
+        cancelAbilitiesWithTags:
+          _tags: []
+        blockAbilitiesWithTags:
+          _tags: []
+        activationOwnedTags:
+          _tags: []
+        activationRequiredTags:
+          _tags: []
+        activationBlockedTags:
+          _tags:
+          - _name: "CD.\u6D41\u8840"
+            _hashCode: -1868013560
+            _shortName: "\u6D41\u8840"
+            _ancestorHashCodes: aba22dbc
+            _ancestorNames:
+            - CD
+        ongoingBlockedTags:
+          _tags: []
+        eventOutputPorts: []
+    - rid: 4684207772497084417
       type: {class: AnimationNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: 432ff1e3-b18d-476d-af80-d39ddc07402a
         nodeType: 20
         position: {x: -472, y: -2380.8}
         targetType: 1
-        skeletonDataAsset: {fileID: 11400000, guid: 4fa037b3a2d54ba46a5bbed3faf26323,
+        skeletonDataAsset: {fileID: 11400000, guid: 3754b23f7ac951e42ab7bce09051b229,
           type: 2}
         animationName: Attack_02
         animationDuration: 22
@@ -85,7 +113,7 @@ MonoBehaviour:
         - startTime: 7
           endTime: 48
           portId: 8dea1941-c520-4f9a-aee0-40932c8542ef
-    - rid: 661027767992713462
+    - rid: 4684207772497084418
       type: {class: ParticleCueNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: cde57fb8-b693-4da8-a4a8-fd61e56c5dcd
@@ -105,7 +133,7 @@ MonoBehaviour:
         particleScale: {x: 1, y: 1, z: 1}
         attachToTarget: 0
         particleLoop: 0
-    - rid: 661027767992713463
+    - rid: 4684207772497084419
       type: {class: CostEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: 9d6f459d-b588-4b64-843b-1b71e8f299ae
@@ -148,7 +176,7 @@ MonoBehaviour:
         ongoingRequiredTags:
           _tags: []
         cancelOnAbilityEnd: 1
-    - rid: 661027767992713464
+    - rid: 4684207772497084420
       type: {class: CooldownEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: c28fb88d-51b1-47b2-be59-859e0ac638e3
@@ -159,7 +187,7 @@ MonoBehaviour:
           _tags: []
         grantedTags:
           _tags:
-          - _name: CD.Blood
+          - _name: "CD.\u6D41\u8840"
             _hashCode: -1868013560
             _shortName: "\u6D41\u8840"
             _ancestorHashCodes: aba22dbc
@@ -189,7 +217,43 @@ MonoBehaviour:
         cooldownType: 0
         maxCharges: 2
         chargeTime: 10
-    - rid: 661027767992713465
+    - rid: 4684207772497084421
+      type: {class: SearchTargetTaskNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+      data:
+        guid: e33ab94c-1496-4d6a-ba5e-1afd38bb0c30
+        nodeType: 4
+        position: {x: -452, y: -1786.4}
+        targetType: 1
+        searchShapeType: 1
+        searchLineType: 0
+        positionSource: 0
+        positionBindingName: center
+        searchCircleRadius: 5
+        searchSectorRadius: 2
+        searchSectorAngle: 180
+        searchLineDirectionOffsetAngle: 0
+        searchLineDirectionWidth: 1
+        searchLineDirectionLength: 10
+        lineStartPositionSource: 0
+        lineStartBindingName: 
+        lineEndPositionSource: 1
+        lineEndBindingName: 
+        searchLineBetweenWidth: 1
+        searchLineAbsoluteAngle: 0
+        searchLineAbsoluteWidth: 1
+        searchLineAbsoluteLength: 10
+        maxTargets: 999
+        searchTargetTags:
+          _tags:
+          - _name: unitType.monster
+            _hashCode: -2021655864
+            _shortName: monster
+            _ancestorHashCodes: 6c74655f
+            _ancestorNames:
+            - unitType
+        searchExcludeTags:
+          _tags: []
+    - rid: 4684207772497084422
       type: {class: FloatingTextCueNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: c353e286-8ef0-460a-b917-887f2aeb390a
@@ -214,44 +278,7 @@ MonoBehaviour:
         duration: 1.5
         offset: {x: 0, y: 0}
         moveDirection: {x: 0, y: 1}
-    - rid: 661027767992713466
-      type: {class: AbilityNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
-      data:
-        guid: 356907e0-1488-4128-bfcc-7ff73cfc3330
-        nodeType: 0
-        position: {x: -878.4, y: -1853.6}
-        targetType: 1
-        skillId: 1002
-        assetTags:
-          _tags: []
-        cancelAbilitiesWithTags:
-          _tags: []
-        blockAbilitiesWithTags:
-          _tags: []
-        activationOwnedTags:
-          _tags: []
-        activationRequiredTags:
-          _tags: []
-        activationBlockedTags:
-          _tags:
-          - _name: CD.Blood
-            _hashCode: -1868013560
-            _shortName: "\u6D41\u8840"
-            _ancestorHashCodes: aba22dbc
-            _ancestorNames:
-            - CD
-        ongoingBlockedTags:
-          _tags: []
-        eventOutputPorts: []
-    - rid: 661027767992713467
-      type: {class: EndAbilityTaskNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
-      data:
-        guid: 011aad56-e96c-41eb-9d85-e793d74a40bb
-        nodeType: 7
-        position: {x: 677.6, y: -1879.2}
-        targetType: 1
-        endType: 0
-    - rid: 661027767992713468
+    - rid: 4684207772497084423
       type: {class: DamageEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: f8947676-1084-4228-b991-1509cc7fe851
@@ -295,7 +322,7 @@ MonoBehaviour:
         damageMMCUseSnapshot: 1
         damageMultiplyByStackCount: 1
         damageCalculationType: 0
-    - rid: 661027767992713469
+    - rid: 4684207772497084424
       type: {class: BuffEffectNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
         guid: cb1df36f-5729-423e-9d1a-287db5a433f0
@@ -335,39 +362,11 @@ MonoBehaviour:
           _tags: []
         cancelOnAbilityEnd: 0
         buffId: 0
-    - rid: 661027767992713470
-      type: {class: SearchTargetTaskNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
+    - rid: 4684207772497084429
+      type: {class: EndAbilityTaskNodeData, ns: SkillEditor.Data, asm: SkillEditor.Data}
       data:
-        guid: e33ab94c-1496-4d6a-ba5e-1afd38bb0c30
-        nodeType: 4
-        position: {x: -452, y: -1786.4}
+        guid: 011aad56-e96c-41eb-9d85-e793d74a40bb
+        nodeType: 7
+        position: {x: 677.6, y: -1879.2}
         targetType: 1
-        searchShapeType: 1
-        searchLineType: 0
-        positionSource: 0
-        positionBindingName: center
-        searchCircleRadius: 5
-        searchSectorRadius: 2
-        searchSectorAngle: 180
-        searchLineDirectionOffsetAngle: 0
-        searchLineDirectionWidth: 1
-        searchLineDirectionLength: 10
-        lineStartPositionSource: 0
-        lineStartBindingName: 
-        lineEndPositionSource: 1
-        lineEndBindingName: 
-        searchLineBetweenWidth: 1
-        searchLineAbsoluteAngle: 0
-        searchLineAbsoluteWidth: 1
-        searchLineAbsoluteLength: 10
-        maxTargets: 999
-        searchTargetTags:
-          _tags:
-          - _name: unitType.monster
-            _hashCode: -2021655864
-            _shortName: monster
-            _ancestorHashCodes: 6c74655f
-            _ancestorNames:
-            - unitType
-        searchExcludeTags:
-          _tags: []
+        endType: 0
