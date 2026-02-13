@@ -5,8 +5,11 @@ using UnityEditor.UIElements;
 using UnityEditor.IMGUI.Controls;
 using System.Linq;
 using System.IO;
-
+using System.Collections.Generic;
+using System.Diagnostics;
 using SkillEditor.Data;
+using SkillEditor.Editor.Tools;
+using Debug = UnityEngine.Debug;
 namespace SkillEditor.Editor
 {
     public class SkillEditorWindow : EditorWindow
@@ -19,6 +22,7 @@ namespace SkillEditor.Editor
         private string currentFilePath;
         private Button saveButton;
         private Button overviewButton;
+        private Button exportButton;
         private VisualElement centerPanel;
 
         [MenuItem("Tools/Skill Editor")]
@@ -140,6 +144,26 @@ namespace SkillEditor.Editor
             });
 
             toolbar.Add(overviewButton);
+
+            // 添加导出到 Luban 按钮
+            exportButton = new Button(ExportToLuban)
+            {
+                text = "导出到 Luban",
+                style =
+                {
+                    width = 100,
+                    height = 24,
+                    marginLeft = 10,
+                    borderTopLeftRadius = 5,
+                    borderTopRightRadius = 5,
+                    borderBottomLeftRadius = 5,
+                    borderBottomRightRadius = 5,
+                    backgroundColor = new Color(0.2f, 0.5f, 0.2f)
+                }
+            };
+            exportButton.SetEnabled(false);
+            toolbar.Add(exportButton);
+
             return toolbar;
         }
 
@@ -374,7 +398,104 @@ namespace SkillEditor.Editor
         {
             saveButton.SetEnabled(isFileSelected);
             overviewButton.SetEnabled(isFileSelected);
+            exportButton.SetEnabled(isFileSelected);
             graphView.SetEnabled(isFileSelected);
+        }
+
+        /// <summary>
+        /// 导出当前技能到 Luban Excel 并生成代码
+        /// </summary>
+        private void ExportToLuban()
+        {
+            if (currentGraphData == null)
+            {
+                EditorUtility.DisplayDialog("导出失败", "请先选择一个技能", "确定");
+                return;
+            }
+
+            // 先保存当前技能
+            SaveCurrentGraph();
+
+            try
+            {
+                // 1. 导出所有技能到 Excel
+                EditorUtility.DisplayProgressBar("导出到 Luban", "正在导出技能到 Excel...", 0.3f);
+                
+                var guids = AssetDatabase.FindAssets("t:SkillGraphData", new[] { "Assets/Unity/Resources/ScriptObject/SkillAsset" });
+                var skills = new List<SkillGraphData>();
+                foreach (var guid in guids)
+                {
+                    var path = AssetDatabase.GUIDToAssetPath(guid);
+                    var asset = AssetDatabase.LoadAssetAtPath<SkillGraphData>(path);
+                    if (asset != null)
+                        skills.Add(asset);
+                }
+
+                if (skills.Count == 0)
+                {
+                    EditorUtility.ClearProgressBar();
+                    EditorUtility.DisplayDialog("导出失败", "未找到任何技能资源", "确定");
+                    return;
+                }
+
+                SkillAssetToLubanExporter.ExportToExcel(skills);
+                Debug.Log($"[SkillEditor] 已导出 {skills.Count} 个技能到 Excel");
+
+                // 2. 运行 Luban 生成代码
+                EditorUtility.DisplayProgressBar("导出到 Luban", "正在生成 Luban 代码...", 0.6f);
+                
+                var genBatPath = Path.Combine(Application.dataPath, "..", "Luban", "MiniTemplate", "gen.bat");
+                if (!File.Exists(genBatPath))
+                {
+                    EditorUtility.ClearProgressBar();
+                    EditorUtility.DisplayDialog("导出失败", $"找不到 gen.bat: {genBatPath}", "确定");
+                    return;
+                }
+
+                var workingDir = Path.GetDirectoryName(genBatPath);
+                var process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "cmd.exe",
+                        Arguments = "/c gen.bat",
+                        WorkingDirectory = workingDir,
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        CreateNoWindow = true
+                    }
+                };
+
+                process.Start();
+                var output = process.StandardOutput.ReadToEnd();
+                var error = process.StandardError.ReadToEnd();
+                process.WaitForExit();
+
+                EditorUtility.DisplayProgressBar("导出到 Luban", "正在刷新资源...", 0.9f);
+                AssetDatabase.Refresh();
+
+                EditorUtility.ClearProgressBar();
+
+                if (process.ExitCode == 0)
+                {
+                    EditorUtility.DisplayDialog("导出成功", 
+                        $"已导出 {skills.Count} 个技能到 Luban Excel\nLuban 代码生成成功", "确定");
+                    Debug.Log($"[SkillEditor] Luban 生成成功:\n{output}");
+                }
+                else
+                {
+                    EditorUtility.DisplayDialog("导出警告", 
+                        $"技能已导出到 Excel，但 Luban 生成可能有问题\n\n错误: {error}", "确定");
+                    Debug.LogWarning($"[SkillEditor] Luban 生成警告:\n{error}\n{output}");
+                }
+            }
+            catch (System.Exception e)
+            {
+                EditorUtility.ClearProgressBar();
+                EditorUtility.DisplayDialog("导出失败", $"导出过程中发生错误:\n{e.Message}", "确定");
+                Debug.LogError($"[SkillEditor] 导出失败: {e}");
+            }
         }
     }
 }

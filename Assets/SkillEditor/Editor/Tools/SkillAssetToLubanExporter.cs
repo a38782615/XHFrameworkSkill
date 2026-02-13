@@ -156,7 +156,7 @@ namespace SkillEditor.Editor.Tools
         /// <summary>
         /// 导出技能到 Excel - 直接修改 xlsx 文件的 sheet1.xml
         /// </summary>
-        private static void ExportToExcel(List<SkillGraphData> skills)
+        public static void ExportToExcel(List<SkillGraphData> skills)
         {
             try
             {
