@@ -343,7 +343,7 @@
 **示例场景在SampleScene里面**
 
 ---
-本组织还有 XHFramework - Unity 游戏客户端框架：https://github.com/XH-Unity/XHFrameworkClient
+本组织还有 XHFramework - Unity 游戏客户端框架：[https://github.com/XH-Unity/XHFrameworkClient](https://github.com/XH-Unity/XHFramework)
 
 ## 📄 许可证
 （请根据实际情况添加许可证信息）
