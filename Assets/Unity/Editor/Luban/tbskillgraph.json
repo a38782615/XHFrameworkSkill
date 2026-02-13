@@ -39,11 +39,11 @@
     "NodesJsons": [
       {
         "nodeType": 20,
-        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-472.0,\"y\":-2380.800048828125},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":44398},\"animationName\":\"Attack_02\",\"animationDuration\":\"22\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":7,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":22,\"portId\":\"97dc121c-84b7-4f94-9997-02e0e5b2ea6c\"}],\"timeCues\":[{\"startTime\":7,\"endTime\":48,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
+        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-472.0,\"y\":-2380.800048828125},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":45010},\"animationName\":\"Attack_02\",\"animationDuration\":\"22\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":7,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":22,\"portId\":\"97dc121c-84b7-4f94-9997-02e0e5b2ea6c\"}],\"timeCues\":[{\"startTime\":7,\"endTime\":48,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
       },
       {
         "nodeType": 12,
-        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":45538},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
+        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":46158},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
       },
       {
         "nodeType": 3,
@@ -117,7 +117,7 @@
       },
       {
         "nodeType": 20,
-        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-491.33331298828127,\"y\":-2478.66650390625},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":44578},\"animationName\":\"Attack\",\"animationDuration\":\"24\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":11,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":24,\"portId\":\"7ecf9fe6-7c5e-46ae-bade-7922214225e2\"}],\"timeCues\":[]}"
+        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-491.33331298828127,\"y\":-2478.66650390625},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":45190},\"animationName\":\"Attack\",\"animationDuration\":\"24\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":11,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":24,\"portId\":\"7ecf9fe6-7c5e-46ae-bade-7922214225e2\"}],\"timeCues\":[]}"
       },
       {
         "nodeType": 0,
@@ -125,7 +125,7 @@
       },
       {
         "nodeType": 8,
-        "content": "{\"guid\":\"90bacd9f-d882-4bba-aaa8-41ed993ac3ff\",\"nodeType\":8,\"position\":{\"x\":-401.33331298828127,\"y\":-1826.666748046875},\"targetType\":2,\"assetTags\":{\"_tags\":[]},\"grantedTags\":{\"_tags\":[]},\"applicationRequiredTags\":{\"_tags\":[]},\"applicationImmunityTags\":{\"_tags\":[]},\"removeGameEffectsWithTags\":{\"_tags\":[]},\"durationType\":2,\"duration\":\"0\",\"isPeriodic\":false,\"period\":\"1\",\"executeOnApplication\":false,\"attributeModifiers\":[],\"stackType\":0,\"stackLimit\":0,\"stackDurationRefreshPolicy\":0,\"stackPeriodResetPolicy\":0,\"stackExpirationPolicy\":0,\"stackOverflowPolicy\":0,\"ongoingRequiredTags\":{\"_tags\":[]},\"cancelOnAbilityEnd\":false,\"launchPositionSource\":0,\"launchBindingName\":\"center\",\"targetPositionSource\":1,\"targetBindingName\":\"center\",\"projectileTargetType\":0,\"flyOver\":false,\"offsetAngle\":0.0,\"curveHeight\":0.0,\"projectilePrefab\":{\"instanceID\":45446},\"speed\":3.0,\"maxDistance\":10.0,\"collisionRadius\":0.5,\"isPiercing\":false,\"maxPierceCount\":1,\"collisionTargetTags\":{\"_tags\":[]},\"collisionExcludeTags\":{\"_tags\":[]}}"
+        "content": "{\"guid\":\"90bacd9f-d882-4bba-aaa8-41ed993ac3ff\",\"nodeType\":8,\"position\":{\"x\":-401.33331298828127,\"y\":-1826.666748046875},\"targetType\":2,\"assetTags\":{\"_tags\":[]},\"grantedTags\":{\"_tags\":[]},\"applicationRequiredTags\":{\"_tags\":[]},\"applicationImmunityTags\":{\"_tags\":[]},\"removeGameEffectsWithTags\":{\"_tags\":[]},\"durationType\":2,\"duration\":\"0\",\"isPeriodic\":false,\"period\":\"1\",\"executeOnApplication\":false,\"attributeModifiers\":[],\"stackType\":0,\"stackLimit\":0,\"stackDurationRefreshPolicy\":0,\"stackPeriodResetPolicy\":0,\"stackExpirationPolicy\":0,\"stackOverflowPolicy\":0,\"ongoingRequiredTags\":{\"_tags\":[]},\"cancelOnAbilityEnd\":false,\"launchPositionSource\":0,\"launchBindingName\":\"center\",\"targetPositionSource\":1,\"targetBindingName\":\"center\",\"projectileTargetType\":0,\"flyOver\":false,\"offsetAngle\":0.0,\"curveHeight\":0.0,\"projectilePrefab\":{\"instanceID\":46064},\"speed\":3.0,\"maxDistance\":10.0,\"collisionRadius\":0.5,\"isPiercing\":false,\"maxPierceCount\":1,\"collisionTargetTags\":{\"_tags\":[]},\"collisionExcludeTags\":{\"_tags\":[]}}"
       }
     ],
     "ConnectionsJson": [
@@ -153,11 +153,11 @@
       },
       {
         "nodeType": 20,
-        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-502.3999938964844,\"y\":-2384.0},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":44398},\"animationName\":\"Skill_attack_1009\",\"animationDuration\":\"25\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":4,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":25,\"portId\":\"f41c85e0-7f26-494e-9ffc-4a06c980f811\"}],\"timeCues\":[{\"startTime\":0,\"endTime\":75,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
+        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-502.3999938964844,\"y\":-2384.0},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":45010},\"animationName\":\"Skill_attack_1009\",\"animationDuration\":\"25\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":4,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":25,\"portId\":\"f41c85e0-7f26-494e-9ffc-4a06c980f811\"}],\"timeCues\":[{\"startTime\":0,\"endTime\":75,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
       },
       {
         "nodeType": 12,
-        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":45540},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
+        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":46160},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
       },
       {
         "nodeType": 0,
@@ -213,7 +213,7 @@
       },
       {
         "nodeType": 12,
-        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":-304.0,\"y\":-2072.0},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":45360},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
+        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":-304.0,\"y\":-2072.0},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":45978},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
       },
       {
         "nodeType": 14,
@@ -252,11 +252,11 @@
       },
       {
         "nodeType": 12,
-        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":45504},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
+        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":46122},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
       },
       {
         "nodeType": 20,
-        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-452.0,\"y\":-2375.199951171875},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":44398},\"animationName\":\"Skill_attack_1005\",\"animationDuration\":\"16\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":7,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":16,\"portId\":\"f41c85e0-7f26-494e-9ffc-4a06c980f811\"}],\"timeCues\":[{\"startTime\":6,\"endTime\":55,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
+        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-452.0,\"y\":-2375.199951171875},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":45010},\"animationName\":\"Skill_attack_1005\",\"animationDuration\":\"16\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":7,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":16,\"portId\":\"f41c85e0-7f26-494e-9ffc-4a06c980f811\"}],\"timeCues\":[{\"startTime\":6,\"endTime\":55,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
       },
       {
         "nodeType": 7,
@@ -268,7 +268,7 @@
       },
       {
         "nodeType": 12,
-        "content": "{\"guid\":\"93ec5a43-cc34-4e4a-acb3-39da2f2c3010\",\"nodeType\":12,\"position\":{\"x\":468.79998779296877,\"y\":-1749.5999755859375},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":true,\"positionSource\":2,\"particlePrefab\":{\"instanceID\":45630},\"particleBindingName\":\"head\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":true,\"particleLoop\":true}"
+        "content": "{\"guid\":\"93ec5a43-cc34-4e4a-acb3-39da2f2c3010\",\"nodeType\":12,\"position\":{\"x\":468.79998779296877,\"y\":-1749.5999755859375},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":true,\"positionSource\":2,\"particlePrefab\":{\"instanceID\":46250},\"particleBindingName\":\"head\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":true,\"particleLoop\":true}"
       }
     ],
     "ConnectionsJson": [
@@ -297,7 +297,7 @@
       },
       {
         "nodeType": 20,
-        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-502.6666564941406,\"y\":-2384.0},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":44398},\"animationName\":\"Skill_attack_1009\",\"animationDuration\":\"25\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":25,\"portId\":\"f41c85e0-7f26-494e-9ffc-4a06c980f811\"}],\"timeCues\":[]}"
+        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-502.6666564941406,\"y\":-2384.0},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":45010},\"animationName\":\"Skill_attack_1009\",\"animationDuration\":\"25\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":25,\"portId\":\"f41c85e0-7f26-494e-9ffc-4a06c980f811\"}],\"timeCues\":[]}"
       },
       {
         "nodeType": 10,
@@ -351,7 +351,7 @@
       },
       {
         "nodeType": 20,
-        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-452.0,\"y\":-2406.39990234375},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":44398},\"animationName\":\"Attack_01\",\"animationDuration\":\"18\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":7,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":18,\"portId\":\"84e238a8-5baf-470e-829f-186695064945\"}],\"timeCues\":[{\"startTime\":7,\"endTime\":48,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
+        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-452.0,\"y\":-2406.39990234375},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":45010},\"animationName\":\"Attack_01\",\"animationDuration\":\"18\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":7,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":18,\"portId\":\"84e238a8-5baf-470e-829f-186695064945\"}],\"timeCues\":[{\"startTime\":7,\"endTime\":48,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
       },
       {
         "nodeType": 4,
@@ -359,7 +359,7 @@
       },
       {
         "nodeType": 12,
-        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":45538},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
+        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":46158},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
       }
     ],
     "ConnectionsJson": [
@@ -388,7 +388,7 @@
       },
       {
         "nodeType": 20,
-        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-452.0,\"y\":-2406.39990234375},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":44398},\"animationName\":\"Attack_01\",\"animationDuration\":\"18\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":7,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":18,\"portId\":\"84e238a8-5baf-470e-829f-186695064945\"}],\"timeCues\":[]}"
+        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-452.0,\"y\":-2406.39990234375},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":45010},\"animationName\":\"Attack_01\",\"animationDuration\":\"18\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":7,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":18,\"portId\":\"84e238a8-5baf-470e-829f-186695064945\"}],\"timeCues\":[]}"
       },
       {
         "nodeType": 10,
@@ -408,15 +408,15 @@
       },
       {
         "nodeType": 8,
-        "content": "{\"guid\":\"ce857360-de7e-4457-b348-9c124ce98879\",\"nodeType\":8,\"position\":{\"x\":202.39999389648438,\"y\":-1649.5999755859375},\"targetType\":2,\"assetTags\":{\"_tags\":[]},\"grantedTags\":{\"_tags\":[]},\"applicationRequiredTags\":{\"_tags\":[]},\"applicationImmunityTags\":{\"_tags\":[]},\"removeGameEffectsWithTags\":{\"_tags\":[]},\"durationType\":2,\"duration\":\"0\",\"isPeriodic\":false,\"period\":\"1\",\"executeOnApplication\":false,\"attributeModifiers\":[],\"stackType\":0,\"stackLimit\":0,\"stackDurationRefreshPolicy\":0,\"stackPeriodResetPolicy\":0,\"stackExpirationPolicy\":0,\"stackOverflowPolicy\":0,\"ongoingRequiredTags\":{\"_tags\":[]},\"cancelOnAbilityEnd\":false,\"launchPositionSource\":0,\"launchBindingName\":\"center\",\"targetPositionSource\":2,\"targetBindingName\":\"center\",\"projectileTargetType\":0,\"flyOver\":true,\"offsetAngle\":30.0,\"curveHeight\":0.0,\"projectilePrefab\":{\"instanceID\":45344},\"speed\":10.0,\"maxDistance\":10.0,\"collisionRadius\":0.5,\"isPiercing\":false,\"maxPierceCount\":1,\"collisionTargetTags\":{\"_tags\":[]},\"collisionExcludeTags\":{\"_tags\":[]}}"
+        "content": "{\"guid\":\"ce857360-de7e-4457-b348-9c124ce98879\",\"nodeType\":8,\"position\":{\"x\":202.39999389648438,\"y\":-1649.5999755859375},\"targetType\":2,\"assetTags\":{\"_tags\":[]},\"grantedTags\":{\"_tags\":[]},\"applicationRequiredTags\":{\"_tags\":[]},\"applicationImmunityTags\":{\"_tags\":[]},\"removeGameEffectsWithTags\":{\"_tags\":[]},\"durationType\":2,\"duration\":\"0\",\"isPeriodic\":false,\"period\":\"1\",\"executeOnApplication\":false,\"attributeModifiers\":[],\"stackType\":0,\"stackLimit\":0,\"stackDurationRefreshPolicy\":0,\"stackPeriodResetPolicy\":0,\"stackExpirationPolicy\":0,\"stackOverflowPolicy\":0,\"ongoingRequiredTags\":{\"_tags\":[]},\"cancelOnAbilityEnd\":false,\"launchPositionSource\":0,\"launchBindingName\":\"center\",\"targetPositionSource\":2,\"targetBindingName\":\"center\",\"projectileTargetType\":0,\"flyOver\":true,\"offsetAngle\":30.0,\"curveHeight\":0.0,\"projectilePrefab\":{\"instanceID\":45962},\"speed\":10.0,\"maxDistance\":10.0,\"collisionRadius\":0.5,\"isPiercing\":false,\"maxPierceCount\":1,\"collisionTargetTags\":{\"_tags\":[]},\"collisionExcludeTags\":{\"_tags\":[]}}"
       },
       {
         "nodeType": 8,
-        "content": "{\"guid\":\"9a695e91-e218-425e-82ed-1e157bf1b014\",\"nodeType\":8,\"position\":{\"x\":184.79998779296876,\"y\":-1475.199951171875},\"targetType\":2,\"assetTags\":{\"_tags\":[]},\"grantedTags\":{\"_tags\":[]},\"applicationRequiredTags\":{\"_tags\":[]},\"applicationImmunityTags\":{\"_tags\":[]},\"removeGameEffectsWithTags\":{\"_tags\":[]},\"durationType\":2,\"duration\":\"0\",\"isPeriodic\":false,\"period\":\"1\",\"executeOnApplication\":false,\"attributeModifiers\":[],\"stackType\":0,\"stackLimit\":0,\"stackDurationRefreshPolicy\":0,\"stackPeriodResetPolicy\":0,\"stackExpirationPolicy\":0,\"stackOverflowPolicy\":0,\"ongoingRequiredTags\":{\"_tags\":[]},\"cancelOnAbilityEnd\":false,\"launchPositionSource\":0,\"launchBindingName\":\"center\",\"targetPositionSource\":2,\"targetBindingName\":\"center\",\"projectileTargetType\":0,\"flyOver\":true,\"offsetAngle\":0.0,\"curveHeight\":0.0,\"projectilePrefab\":{\"instanceID\":45344},\"speed\":10.0,\"maxDistance\":10.0,\"collisionRadius\":0.5,\"isPiercing\":false,\"maxPierceCount\":1,\"collisionTargetTags\":{\"_tags\":[]},\"collisionExcludeTags\":{\"_tags\":[]}}"
+        "content": "{\"guid\":\"9a695e91-e218-425e-82ed-1e157bf1b014\",\"nodeType\":8,\"position\":{\"x\":184.79998779296876,\"y\":-1475.199951171875},\"targetType\":2,\"assetTags\":{\"_tags\":[]},\"grantedTags\":{\"_tags\":[]},\"applicationRequiredTags\":{\"_tags\":[]},\"applicationImmunityTags\":{\"_tags\":[]},\"removeGameEffectsWithTags\":{\"_tags\":[]},\"durationType\":2,\"duration\":\"0\",\"isPeriodic\":false,\"period\":\"1\",\"executeOnApplication\":false,\"attributeModifiers\":[],\"stackType\":0,\"stackLimit\":0,\"stackDurationRefreshPolicy\":0,\"stackPeriodResetPolicy\":0,\"stackExpirationPolicy\":0,\"stackOverflowPolicy\":0,\"ongoingRequiredTags\":{\"_tags\":[]},\"cancelOnAbilityEnd\":false,\"launchPositionSource\":0,\"launchBindingName\":\"center\",\"targetPositionSource\":2,\"targetBindingName\":\"center\",\"projectileTargetType\":0,\"flyOver\":true,\"offsetAngle\":0.0,\"curveHeight\":0.0,\"projectilePrefab\":{\"instanceID\":45962},\"speed\":10.0,\"maxDistance\":10.0,\"collisionRadius\":0.5,\"isPiercing\":false,\"maxPierceCount\":1,\"collisionTargetTags\":{\"_tags\":[]},\"collisionExcludeTags\":{\"_tags\":[]}}"
       },
       {
         "nodeType": 8,
-        "content": "{\"guid\":\"d897a922-5756-42cf-ac65-90a48c1e5a17\",\"nodeType\":8,\"position\":{\"x\":173.60000610351563,\"y\":-1327.199951171875},\"targetType\":2,\"assetTags\":{\"_tags\":[]},\"grantedTags\":{\"_tags\":[]},\"applicationRequiredTags\":{\"_tags\":[]},\"applicationImmunityTags\":{\"_tags\":[]},\"removeGameEffectsWithTags\":{\"_tags\":[]},\"durationType\":2,\"duration\":\"0\",\"isPeriodic\":false,\"period\":\"1\",\"executeOnApplication\":false,\"attributeModifiers\":[],\"stackType\":0,\"stackLimit\":0,\"stackDurationRefreshPolicy\":0,\"stackPeriodResetPolicy\":0,\"stackExpirationPolicy\":0,\"stackOverflowPolicy\":0,\"ongoingRequiredTags\":{\"_tags\":[]},\"cancelOnAbilityEnd\":false,\"launchPositionSource\":0,\"launchBindingName\":\"center\",\"targetPositionSource\":2,\"targetBindingName\":\"center\",\"projectileTargetType\":0,\"flyOver\":true,\"offsetAngle\":-30.0,\"curveHeight\":0.0,\"projectilePrefab\":{\"instanceID\":45344},\"speed\":10.0,\"maxDistance\":10.0,\"collisionRadius\":0.5,\"isPiercing\":false,\"maxPierceCount\":1,\"collisionTargetTags\":{\"_tags\":[]},\"collisionExcludeTags\":{\"_tags\":[]}}"
+        "content": "{\"guid\":\"d897a922-5756-42cf-ac65-90a48c1e5a17\",\"nodeType\":8,\"position\":{\"x\":173.60000610351563,\"y\":-1327.199951171875},\"targetType\":2,\"assetTags\":{\"_tags\":[]},\"grantedTags\":{\"_tags\":[]},\"applicationRequiredTags\":{\"_tags\":[]},\"applicationImmunityTags\":{\"_tags\":[]},\"removeGameEffectsWithTags\":{\"_tags\":[]},\"durationType\":2,\"duration\":\"0\",\"isPeriodic\":false,\"period\":\"1\",\"executeOnApplication\":false,\"attributeModifiers\":[],\"stackType\":0,\"stackLimit\":0,\"stackDurationRefreshPolicy\":0,\"stackPeriodResetPolicy\":0,\"stackExpirationPolicy\":0,\"stackOverflowPolicy\":0,\"ongoingRequiredTags\":{\"_tags\":[]},\"cancelOnAbilityEnd\":false,\"launchPositionSource\":0,\"launchBindingName\":\"center\",\"targetPositionSource\":2,\"targetBindingName\":\"center\",\"projectileTargetType\":0,\"flyOver\":true,\"offsetAngle\":-30.0,\"curveHeight\":0.0,\"projectilePrefab\":{\"instanceID\":45962},\"speed\":10.0,\"maxDistance\":10.0,\"collisionRadius\":0.5,\"isPiercing\":false,\"maxPierceCount\":1,\"collisionTargetTags\":{\"_tags\":[]},\"collisionExcludeTags\":{\"_tags\":[]}}"
       }
     ],
     "ConnectionsJson": [
@@ -448,7 +448,7 @@
       },
       {
         "nodeType": 20,
-        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-502.3999938964844,\"y\":-2384.0},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":44398},\"animationName\":\"Skill_attack_1009\",\"animationDuration\":\"25\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":4,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":25,\"portId\":\"f41c85e0-7f26-494e-9ffc-4a06c980f811\"}],\"timeCues\":[{\"startTime\":0,\"endTime\":75,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
+        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-502.3999938964844,\"y\":-2384.0},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":45010},\"animationName\":\"Skill_attack_1009\",\"animationDuration\":\"25\",\"isAnimationLooping\":false,\"timeEffects\":[{\"triggerTime\":4,\"portId\":\"de0ba361-3aba-4ef0-bb07-9b418fcae591\"},{\"triggerTime\":25,\"portId\":\"f41c85e0-7f26-494e-9ffc-4a06c980f811\"}],\"timeCues\":[{\"startTime\":0,\"endTime\":75,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
       },
       {
         "nodeType": 22,
@@ -460,7 +460,7 @@
       },
       {
         "nodeType": 12,
-        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":45418},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
+        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":false,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":46036},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":false,\"particleLoop\":false}"
       },
       {
         "nodeType": 0,
@@ -504,11 +504,11 @@
       },
       {
         "nodeType": 20,
-        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-452.0,\"y\":-2375.199951171875},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":44398},\"animationName\":\"Skill_attack_1011\",\"animationDuration\":\"12\",\"isAnimationLooping\":true,\"timeEffects\":[{\"triggerTime\":250,\"portId\":\"f41c85e0-7f26-494e-9ffc-4a06c980f811\"}],\"timeCues\":[{\"startTime\":0,\"endTime\":255,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
+        "content": "{\"guid\":\"432ff1e3-b18d-476d-af80-d39ddc07402a\",\"nodeType\":20,\"position\":{\"x\":-452.0,\"y\":-2375.199951171875},\"targetType\":1,\"skeletonDataAsset\":{\"instanceID\":45010},\"animationName\":\"Skill_attack_1011\",\"animationDuration\":\"12\",\"isAnimationLooping\":true,\"timeEffects\":[{\"triggerTime\":250,\"portId\":\"f41c85e0-7f26-494e-9ffc-4a06c980f811\"}],\"timeCues\":[{\"startTime\":0,\"endTime\":255,\"portId\":\"8dea1941-c520-4f9a-aee0-40932c8542ef\"}]}"
       },
       {
         "nodeType": 12,
-        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":true,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":45710},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":true,\"particleLoop\":true}"
+        "content": "{\"guid\":\"cde57fb8-b693-4da8-a4a8-fd61e56c5dcd\",\"nodeType\":12,\"position\":{\"x\":677.5999755859375,\"y\":-1998.4000244140625},\"targetType\":1,\"requiredTags\":{\"_tags\":[]},\"immunityTags\":{\"_tags\":[]},\"destroyWithNode\":true,\"positionSource\":0,\"particlePrefab\":{\"instanceID\":46330},\"particleBindingName\":\"down\",\"particleOffset\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"particleScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"attachToTarget\":true,\"particleLoop\":true}"
       },
       {
         "nodeType": 10,
