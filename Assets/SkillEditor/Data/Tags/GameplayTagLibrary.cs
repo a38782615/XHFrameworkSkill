@@ -96,6 +96,16 @@ namespace SkillEditor.Data
         public static GameplayTag CD_Wind { get; } = new GameplayTag("CD.Wind");
 
         /// <summary>
+        /// Skill
+        /// </summary>
+        public static GameplayTag Skill { get; } = new GameplayTag("Skill");
+
+        /// <summary>
+        /// Skill.Running
+        /// </summary>
+        public static GameplayTag Skill_Running { get; } = new GameplayTag("Skill.Running");
+
+        /// <summary>
         /// unitType
         /// </summary>
         public static GameplayTag unitType { get; } = new GameplayTag("unitType");
@@ -135,6 +145,8 @@ namespace SkillEditor.Data
             ["CD.ThreeFire"] = CD_ThreeFire,
             ["CD.Wan"] = CD_Wan,
             ["CD.Wind"] = CD_Wind,
+            ["Skill"] = Skill,
+            ["Skill.Running"] = Skill_Running,
             ["unitType"] = unitType,
             ["unitType.hero"] = unitType_hero,
             ["unitType.monster"] = unitType_monster,
