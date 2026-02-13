@@ -71,7 +71,6 @@ namespace SkillEditor.Data
 
         /// <summary>
         /// CD.SpeedUp
-        /// CD.流血
         /// </summary>
         public static GameplayTag CD_SpeedUp { get; } = new GameplayTag("CD.SpeedUp");
 
