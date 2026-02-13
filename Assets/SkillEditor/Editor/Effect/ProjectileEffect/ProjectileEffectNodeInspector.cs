@@ -222,7 +222,7 @@ namespace SkillEditor.Editor
                 container.Add(pierceSection);
 
                 // ============ 碰撞标签 ============
-                var collisionTagSection = CreateCollapsibleSection("碰撞标签", out var collisionTagContent, false);
+                var collisionTagSection = CreateCollapsibleSection("碰撞标签", out var collisionTagContent, true);
 
                 collisionTagContent.Add(CreateTagSetField("碰撞目标标签", data.collisionTargetTags, value =>
                 {

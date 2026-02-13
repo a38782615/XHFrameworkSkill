@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillId: 1001
   nodes:
-  - rid: 4684207772497084422
-  - rid: 4684207772497084430
-  - rid: 4684207772497084423
-  - rid: 4684207772497084418
-  - rid: 4684207772497084421
-  - rid: 4684207772497084417
-  - rid: 4684207772497084416
   - rid: 4684207772497084420
   - rid: 4684207772497084419
+  - rid: 4684207772497084417
+  - rid: 4684207772497084430
+  - rid: 4684207772497084421
+  - rid: 4684207772497084418
+  - rid: 4684207772497084423
+  - rid: 4684207772497084422
+  - rid: 4684207772497084416
   connections:
   - outputNodeGuid: 432ff1e3-b18d-476d-af80-d39ddc07402a
     outputPortName: 8dea1941-c520-4f9a-aee0-40932c8542ef
@@ -64,7 +64,7 @@ MonoBehaviour:
       data:
         guid: 356907e0-1488-4128-bfcc-7ff73cfc3330
         nodeType: 0
-        position: {x: -878.6666, y: -1853.3334}
+        position: {x: -797.3334, y: -2479.3333}
         targetType: 1
         skillId: 1001
         assetTags:
@@ -93,13 +93,13 @@ MonoBehaviour:
       data:
         guid: 432ff1e3-b18d-476d-af80-d39ddc07402a
         nodeType: 20
-        position: {x: -452, y: -2406.6665}
+        position: {x: -416.66666, y: -2824.6665}
         targetType: 1
         skeletonDataAsset: {fileID: 11400000, guid: 3754b23f7ac951e42ab7bce09051b229,
           type: 2}
-        animationName: Attack_01
+        animationName: Skill_attack_1001
         animationDuration: 18
-        isAnimationLooping: 0
+        isAnimationLooping: 1
         timeEffects:
         - triggerTime: 7
           portId: de0ba361-3aba-4ef0-bb07-9b418fcae591
@@ -114,7 +114,7 @@ MonoBehaviour:
       data:
         guid: cde57fb8-b693-4da8-a4a8-fd61e56c5dcd
         nodeType: 12
-        position: {x: 677.3334, y: -1998.6667}
+        position: {x: 731.3334, y: -2488.6665}
         targetType: 1
         requiredTags:
           _tags: []
@@ -134,7 +134,7 @@ MonoBehaviour:
       data:
         guid: 9d6f459d-b588-4b64-843b-1b71e8f299ae
         nodeType: 3
-        position: {x: -1186.6666, y: -2019.3334}
+        position: {x: -1130.6666, y: -2479.3333}
         targetType: 1
         assetTags:
           _tags: []
@@ -177,7 +177,7 @@ MonoBehaviour:
       data:
         guid: c28fb88d-51b1-47b2-be59-859e0ac638e3
         nodeType: 10
-        position: {x: -1186.6666, y: -1747.3334}
+        position: {x: -1130.6666, y: -2232}
         targetType: 1
         assetTags:
           _tags: []
@@ -218,7 +218,7 @@ MonoBehaviour:
       data:
         guid: e33ab94c-1496-4d6a-ba5e-1afd38bb0c30
         nodeType: 4
-        position: {x: -452, y: -1786.6667}
+        position: {x: 731.3334, y: -2344}
         targetType: 1
         searchShapeType: 1
         searchLineType: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
       data:
         guid: c353e286-8ef0-460a-b917-887f2aeb390a
         nodeType: 14
-        position: {x: 178.66669, y: -1786.6667}
+        position: {x: 1190, y: -2344}
         targetType: 1
         requiredTags:
           _tags: []
@@ -279,7 +279,7 @@ MonoBehaviour:
       data:
         guid: f8947676-1084-4228-b991-1509cc7fe851
         nodeType: 1
-        position: {x: -99.999985, y: -1680.6667}
+        position: {x: 994.66675, y: -2344}
         targetType: 0
         assetTags:
           _tags: []
@@ -323,6 +323,6 @@ MonoBehaviour:
       data:
         guid: 2cfdacd2-0186-49dd-b177-4eb8c0ad87bd
         nodeType: 7
-        position: {x: 689.3334, y: -1860.6667}
+        position: {x: 731.3334, y: -2080}
         targetType: 1
         endType: 0

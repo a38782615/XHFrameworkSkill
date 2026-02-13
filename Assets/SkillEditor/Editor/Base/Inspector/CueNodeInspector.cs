@@ -17,7 +17,7 @@ namespace SkillEditor.Editor
         /// <summary>
         /// 标签配置区域是否默认展开
         /// </summary>
-        protected virtual bool CueTagsDefaultExpanded => false;
+        protected virtual bool CueTagsDefaultExpanded => true;
 
         protected sealed override void BuildInspectorUI(VisualElement container, SkillNodeBase node)
         {
